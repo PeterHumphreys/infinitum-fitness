@@ -1,0 +1,109 @@
+<div class="wrapper">
+    <%- include('../../_partial/_reg-header.ejs'); -%>
+    <main>
+        <p>Let's start your Infinitum journey!</p>
+
+        <form class="submission-form" id ="form-register">
+            
+            <!--Step 1-->
+            <div class="step step-active">
+                <!--[0] First Name-->
+                <input type="text"placeholder="First Name" id="first-name" name="user_first_name">
+                <p class="error-text">0</p>
+
+                <!--[1] Last Name-->
+                <input type="text" placeholder="Last Name" id="last-name" name="user_last_name" >
+                <p class="error-text">0</p>
+
+                <!--[2] Email-->
+                <input type="text" placeholder="Email" id="email" name="user_email" >
+                <p class="error-text">0</p>
+
+                <!--[3] Password-->
+                <input type="password" placeholder="Password" id="password" name="user_password">
+                <p class="error-text">0</p>
+
+                <!--[4] Option to view Password-->
+                <label for="show-password">Show Password</label>
+                <input type="checkbox" name="show_password" id="show-password">
+
+            </div>
+
+            <!--Step 2-->
+            <div class="step">
+
+                <!--[5] Date of Birth-->
+                <input type="date" placeholder="Date of Birth" id="dob" name="user_dob">
+                <p class="error-text">0</p>
+
+                <!--[6] Sex-->
+                <select id="sex" name="user_sex">
+                    <option value="" disabled selected hidden>Sex</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <p class="error-text">0</p>
+
+                <!--Height-->
+                <div id="height-inputs">
+                    <label for="">Height (Feet and inches)</label>
+                    <!--[7] Feet-->
+                    <input type="number" min="0" max="8" placeholder="Feet" id="height-ft" name="user_height_ft">
+                    
+                    <!--[8] Inches-->
+                    <input type="number" min="0" max="11" step=".1" placeholder="Inches" id="height-in" name="user_height_in">
+                </div>
+                <p class="error-text">0</p>
+
+                <!--[9] Weight-->
+                <input type="number" min="0" max="600" step = ".1" placeholder="Weight (lbs)" id="weight" name="user_weight">
+                <p class="error-text">0</p>
+                
+                <!--[10] Body Fat Percentage-->
+                <input type="number" step=".01" placeholder="Body Fat Percentage" min="0" max="100" id="bfp" name="user_bfp">
+                <p class="error-text">0</p>
+
+            </div>
+
+            <!--Step 3-->
+            <div class="step">
+                <!--[11] Activity Level-->
+                <select id="activity-level" name="user_activity_level">
+                    <option value="" disabled selected hidden>Activity Level</option>
+                    <option value="Sedentary">Sedentary</option>
+                    <option value="Lightly Active">Lightly Active</option>
+                    <option value="Moderately Active">Moderately Active</option>
+                    <option value="Very Active">Very Active</option>
+                    <option value="Extremely Active">Extremely Active</option>
+                </select id="" >
+                <p class="error-text">0</p>
+
+                <!--[12] Fitness Goal-->
+                <select id="fitness-goal" name="user_fitness_goal">
+                    <option value="" disabled selected hidden>Fitness Goal</option>
+                    <option value="Lose Weight">Lose Weight</option>
+                    <option value="Gain Muscle">Gain Muscle</option>
+                    <option value="Maintain">Maintain</option>
+                </select>
+                <p class="error-text">0</p>
+            </div>
+            
+            <!--Buttons to change current step-->
+            <div id="step-buttons">
+                <button class="btn-dark btn-hidden" id="btn-prev">Previous</button>
+                <button class="btn-dark" id="btn-next">Next</button>
+            </div>
+
+            <!--Submit Button-->
+            <button type="submit" class="btn-dark btn-hidden" disabled id="btn-sign-up" >Sign Up!</button>
+        </form>
+
+        <!--Set user image-->
+        <div class="step step-optional">
+            <!--[] User Profile Image-->
+            <%- include('../../_partial/_image-picker.ejs'); -%>
+        </div>
+    </main>
+    <script src="/public/scripts/reg-validation.js"></script>
+    <script src="/public/scripts/register.js"></script>
+</div>

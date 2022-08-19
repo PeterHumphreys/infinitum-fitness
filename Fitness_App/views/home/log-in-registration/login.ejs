@@ -1,0 +1,27 @@
+
+    <div class="wrapper">
+        <%- include('../../_partial/_reg-header.ejs'); -%>
+        <main>
+            <h1>Log In</h1>
+            <form class="submission-form " id="form-login">
+                <!--[0] Email-->
+                <input type="text" placeholder="Email" name="user_email" id="user-email">
+                <p class="error-text">0</p>
+
+                <!--[1] Password-->
+                <input type="text" placeholder="Password" name="user_password" id="user-password">
+                <p class="error-text">0</p>
+
+                <!--Log In Button-->
+                <button type="submit" class="btn-dark" id="btn-login">Log In</button>
+            </form>
+            <!-- Sign up for an account-->
+            <div id="sign-up-box">
+                <h3>No account?  Sign up now!</h3>
+                <a href="/signup" class="btn-dark">Sign Up!</a>
+            </div>
+
+        </main>
+        <script src="../../../public/scripts/login.js"></script>
+    </div>
+

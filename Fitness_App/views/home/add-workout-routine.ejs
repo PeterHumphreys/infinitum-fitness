@@ -1,0 +1,86 @@
+<%- include('../_partial/_header'); -%>
+
+<main class="content-container">
+    <form class="content-grid">
+        <textarea id="edit-description" class="content-box" name="" cols="30" rows="10" placeholder="Enter description here"></textarea>
+        <div id="edit-details" class="content-box grid-form">
+            <label class="rating-label">Difficulty</label>
+            <input
+                class="rating"
+                max="5"
+                oninput="this.style.setProperty('--value', this.value)"
+                step="0.5"
+                type="range"
+                value="1">
+            <label for="">Length</label><input type="number" name="length-weeks" id="length-weeks" min="1" max="52" step="1" value="1">
+            <label for="">Avg Duration</label> <input type="number" name="duration-minutes" id="duration-minutes" min="1" max="400" step="1" value="60">
+            <label for="">Days per Week</label> <input type="number" name="duration-minutes" id="duration-minutes" min="1" max="7" step="1" value="3">
+            
+        </div>
+        <div id="edit-workout" class="content-box">
+            <div id="edit-workout">
+                
+                <div id="edit-daypicker">
+                    
+                </div>
+
+                <div id="edit-exercise-list-container">
+                    <h3>Monday's Workout</h3>
+                    <div id="edit-exercise-list">
+                        <div class="info-strip">
+                            <img src="/public/images/account-placeholder.jpg" class="circle">
+                            <h4>Exercise Name</h4>
+                            <ul>
+                                <li>Sets: <span> 3</span></li>
+                                <li>Reps: <span> 8-12</span></li>
+                                <li>Weights: <span> 678lb</span></li>
+                                <li>Rest: <span> 90sec</span></li>
+                            </ul>
+                            <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.37 23.23"><defs><style>.cls-1{fill:#fff;}</style></defs><path class="cls-1" d="M5.02,18.23l5.54-.02L22.63,6.25c.47-.47,.74-1.1,.74-1.77s-.26-1.3-.74-1.77l-1.99-1.99c-.95-.95-2.6-.94-3.54,0L5.02,12.67v5.56ZM18.87,2.48l1.99,1.99-2,1.98-1.99-1.99,2-1.98ZM7.53,13.72l7.56-7.49,1.99,1.99-7.56,7.49h-1.99v-1.99Z"/><path class="cls-1" d="M2.51,23.23H20.07c1.38,0,2.51-1.13,2.51-2.51V9.85l-2.51,2.51v8.36H6.47s-.07,.01-.1,.01c-.04,0-.08-.01-.13-.01H2.51V3.16H11.1L13.61,.65H2.51C1.13,.65,0,1.78,0,3.16V20.72c0,1.38,1.13,2.51,2.51,2.51Z"/></svg>
+                        </div>
+                        <div class="info-strip">
+                            <img src="/public/images/account-placeholder.jpg" class="circle">
+                            <h4>Exercise Name</h4>
+                            <ul>
+                                <li>Sets: <span> 3</span></li>
+                                <li>Reps: <span> 8-12</span></li>
+                                <li>Weights: <span> 678lb</span></li>
+                                <li>Rest: <span> 90sec</span></li>
+                            </ul>
+                            <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.37 23.23"><defs><style>.cls-1{fill:#fff;}</style></defs><path class="cls-1" d="M5.02,18.23l5.54-.02L22.63,6.25c.47-.47,.74-1.1,.74-1.77s-.26-1.3-.74-1.77l-1.99-1.99c-.95-.95-2.6-.94-3.54,0L5.02,12.67v5.56ZM18.87,2.48l1.99,1.99-2,1.98-1.99-1.99,2-1.98ZM7.53,13.72l7.56-7.49,1.99,1.99-7.56,7.49h-1.99v-1.99Z"/><path class="cls-1" d="M2.51,23.23H20.07c1.38,0,2.51-1.13,2.51-2.51V9.85l-2.51,2.51v8.36H6.47s-.07,.01-.1,.01c-.04,0-.08-.01-.13-.01H2.51V3.16H11.1L13.61,.65H2.51C1.13,.65,0,1.78,0,3.16V20.72c0,1.38,1.13,2.51,2.51,2.51Z"/></svg>
+                        </div>
+                        <div class="info-strip">
+                            <img src="/public/images/account-placeholder.jpg" class="circle">
+                            <h4>Exercise Name</h4>
+                            <ul>
+                                <li>Sets: <span> 3</span></li>
+                                <li>Reps: <span> 8-12</span></li>
+                                <li>Weights: <span> 678lb</span></li>
+                                <li>Rest: <span> 90sec</span></li>
+                            </ul>
+                            <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.37 23.23"><defs><style>.cls-1{fill:#fff;}</style></defs><path class="cls-1" d="M5.02,18.23l5.54-.02L22.63,6.25c.47-.47,.74-1.1,.74-1.77s-.26-1.3-.74-1.77l-1.99-1.99c-.95-.95-2.6-.94-3.54,0L5.02,12.67v5.56ZM18.87,2.48l1.99,1.99-2,1.98-1.99-1.99,2-1.98ZM7.53,13.72l7.56-7.49,1.99,1.99-7.56,7.49h-1.99v-1.99Z"/><path class="cls-1" d="M2.51,23.23H20.07c1.38,0,2.51-1.13,2.51-2.51V9.85l-2.51,2.51v8.36H6.47s-.07,.01-.1,.01c-.04,0-.08-.01-.13-.01H2.51V3.16H11.1L13.61,.65H2.51C1.13,.65,0,1.78,0,3.16V20.72c0,1.38,1.13,2.51,2.51,2.51Z"/></svg>
+                        </div>
+                        
+                    </div>
+                    <div class="container-right">
+                        <button class="btn-icon">
+                            <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><defs><style>.cls-1{fill:#fff;}</style></defs><path class="cls-1" d="M3,30H21v-3H3V9H0V27c0,1.65,1.35,3,3,3Z"/><path class="cls-1" d="M27,0H9c-1.65,0-3,1.35-3,3V21c0,1.65,1.35,3,3,3H27c1.65,0,3-1.35,3-3V3c0-1.65-1.35-3-3-3Zm-3,13.5h-4.5v4.5h-3v-4.5h-4.5v-3h4.5V6h3v4.5h4.5v3Z"/>
+                            </svg>
+                        </button>
+
+                        <button class="btn-icon">
+                            <?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><defs><style>.cls-1{fill:#fff;}</style></defs><path class="cls-1" d="M3,30H21v-3H3V9H0V27c0,1.65,1.35,3,3,3Z"/><path class="cls-1" d="M27,0H9c-1.65,0-3,1.35-3,3V21c0,1.65,1.35,3,3,3H27c1.65,0,3-1.35,3-3V3c0-1.65-1.35-3-3-3Zm-3,13.5H12v-3h12v3Z"/></svg>
+                        </button>
+                    </div>
+
+            
+                </div>
+            </div>
+        </div>
+        <div id="btn-container">
+            <button type="submit" class="btn-dark">Save</button> 
+        </div>
+    </form>
+</main>
+<%- include ('../_partial/_sidebar'); -%>
+<%- include ('../_partial/_footer'); -%>

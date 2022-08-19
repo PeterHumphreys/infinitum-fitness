@@ -1,0 +1,105 @@
+button
+{
+    max-width:fit-content;
+
+}
+
+button:hover, input[type=submit]:hover{
+    cursor:pointer;
+}
+
+//Buttons that contain only text such as "save" or "do x"
+.btn-text
+{
+    min-width: 100px;
+    margin:auto;
+
+    &.btn-active
+    {
+        background-color: $color_highlight;
+        color:$color_white;
+    }
+}
+
+//Text buttons with dark color scheme
+.btn-dark
+{
+    @extend .btn-text;
+    background-color: $color_primary;
+    color: $color_white;
+    border: none;
+    padding:10px;
+
+    &:hover{
+        background-color: $color_highlight;
+        color:$color_white;
+    }
+}
+
+//Text buttons with light color scheme
+.btn-light
+{
+    @extend .btn-text;
+    background-color: $color_white;
+    color: $color_primary;
+    border: none;
+    padding:10px;
+
+    &:hover{
+        background-color: $color_highlight;
+        color:$color_white;
+    }
+}
+
+.btn-transparent
+{
+    @extend .btn-text;
+    background-color: transparent;
+    color: $color_white;
+    border: none;
+    padding:10px;
+
+    &:hover{
+        background-color: $color_highlight;
+        color:$color_white;
+    }
+
+}
+
+//Buttons that contain only svg icons such as "+" or "-" buttons
+.btn-icon
+{
+    padding:0;
+    border:none;
+    background-color: transparent;
+
+    &:hover 
+    {
+        background-color: transparent;
+        .cls-1
+        {
+            fill:$color_highlight
+        }
+    }
+    svg
+    {
+        width:30px;
+        height: 30px;
+    }
+}
+
+.btn-hidden
+{
+    opacity: 0;
+}
+
+.btn-hidden:hover
+{
+    
+    cursor: initial!important;
+}
+
+
+
+
+

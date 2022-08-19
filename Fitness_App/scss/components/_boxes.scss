@@ -1,0 +1,219 @@
+@import './utillities';
+.box
+{
+    border-radius: 2em;
+}
+
+.content-box
+{
+    @extend .box;
+    padding:1em;
+    background: $gradient_tertiary;
+}
+
+//Image boxes contained within grid
+.image-box
+{
+    @extend .box;
+    position: relative;
+    overflow: hidden;
+    background-color:$color_primary;
+
+    a
+    {
+        img
+        {
+            
+            height:100%;
+            object-fit: cover;
+            width: 100%;
+            max-height: 100%;
+            opacity:.4;
+        }
+    
+        .overlay-text-container
+        {   display:flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width:100%;
+            text-align:center;
+            color:#fff;
+            position: absolute;
+            margin: 0;
+            padding:30px;
+
+            /*h3
+            {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }*/
+
+            .heading-subcontainer
+            {
+                height: 25%;
+                h3
+                {
+                    padding-bottom: .5em;
+                    font-size:24px;
+                    text-shadow: $shadow-small;
+                }
+                h4{
+                    
+                    padding-bottom: .5em;
+                }
+            }
+
+            .description-subcontainer
+            {
+                height: 50%;
+                p
+                {
+                    font-size:18px;
+                    text-shadow: $shadow-small;
+                    opacity: 0;
+                }
+            }
+
+            .icon-subcontainer
+            {
+                height: 25%;
+                justify-self: baseline;
+                display: flex;
+                justify-content: flex-end;
+                align-items:flex-end;
+
+                img{
+                    max-width:30px;
+                    max-height:30px;
+                    &:hover
+                    {
+                        opacity: 1;
+                    }
+                }
+
+            }
+        }
+        
+        &:hover img
+        {
+            opacity: .1;
+        }
+        &:hover .icon-subcontainer img
+        {
+            opacity: .4;
+        }
+        
+        
+        &:hover .overlay-text-container p
+        {
+            opacity: 1;
+        }
+    }
+
+}
+#add-icon
+{
+    grid-column: 1/-1;
+    justify-self: right;
+    svg
+    {
+        width:60px;
+        height: 60px;
+    }
+
+    @extend .hoverable;
+    
+}
+.strip
+{
+    //Layout
+    display:flex;
+    align-items: center;
+    gap:30px;
+
+    padding:10px 30px 10px 30px;
+    h4{
+        font-size:22px;
+        font-weight: 400;
+    }
+
+    svg
+    {
+        @extend .hoverable;
+        width: 20px;
+        height:20px;
+    }
+}
+
+.info-strip
+{
+    //Styling
+    background:$color_secondary;
+    @extend .strip;
+    svg
+    {
+        margin-left:auto;
+        align-self: flex-end;
+    }
+}
+
+.img-strip
+{
+    //Styling
+    background:$color_accent;
+    @extend .strip;
+}
+
+.modal
+{
+    z-index:9999;
+    position:fixed;
+    top:0;
+    left:0; 
+    right:0;
+    bottom:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $color_modal_background;
+    visibility: hidden;
+    opacity:0;
+    .modal-dialog
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: $color_secondary_mostly_filled;
+        .modal-header
+        {
+            flex-basis:100%;
+            width: 100%;
+            button
+            {
+                float:right;
+                border-top-right-radius: 2em;
+            }
+        }
+        & > * 
+        {
+            margin:auto;
+        }
+        .image-picker
+        {
+            margin:30px;
+        }
+    }
+
+    &.modal-active
+    {
+        visibility: visible;
+        opacity:1;
+    }
+}

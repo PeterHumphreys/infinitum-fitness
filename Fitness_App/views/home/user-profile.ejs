@@ -1,0 +1,34 @@
+<%- include('../_partial/_header'); -%>
+
+<main class="content-container">
+    <div class="content-grid">
+        <div id="account-image-container">
+            <a href="#" class="modal-trigger">
+                <img src=<%= `${user.user_profile_photo_URL}`%> alt="" style="width:250px" class="circle">
+                <div class="overlay circle">
+                    <p>Update profile picture</p>
+                </div>
+            </a>
+        </div>
+        <div id="account-details">
+            <ul>
+                <li>Email: <%= `${user.user_email}`%></li>
+                <li>Date of Birth: <%= `${user.user_dob}`%></li>
+                <li>Height: <%= `${user.user_height}`%></li>
+                <li>Weight: <%= `${user.user_weight}`%></li>
+                <li>Current Activity Level: <%= `${user.user_activity_level}`%></li>
+                <li>Fitness Goal: <%= `${user.user_fitness_goal}`%></li>
+            </ul>
+        </div>
+        <div class="modal">
+            <div class="modal-dialog box">
+                <div class="modal-header">
+                    <button class="btn-close-modal btn-transparent">X</button>
+                </div>
+                <%- include('../_partial/_image-picker'); -%>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include ('../_partial/_sidebar'); -%>
+<%- include ('../_partial/_footer'); -%>

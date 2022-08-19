@@ -1,0 +1,49 @@
+<%- include('../_partial/_header'); -%>
+
+<main class="content-container">
+
+    <div id="overall-chart-container">
+        <div id="chart-container">
+            <canvas id="weight-chart"></canvas>
+            <button class="btn-dark modal-trigger">Log Data</a>
+        </div>
+    </div>
+    <div class="modal">
+        <div class="modal-dialog box">
+            <div class="modal-header">
+                <button class="btn-close-modal btn-transparent">X</button>
+            </div>
+            <form class="user-input-form" id="log-info-form">
+                <fieldset>
+                    <div class="input-label-container" id="end-date-container">
+                        <label for="">Date</label>
+                        <input type="date" name="historical_date">
+                        <p class="error-text">0</p>
+                    </div>
+
+                    <div class="input-label-container" id="min-y-value-container">
+                        <label for="">Weight</label>
+                        <input type="text" name="user_weight" id="weight">
+                        <p class="error-text">0</p>
+                    </div>
+
+                    <div class="input-label-container" id="max-y-value-container">
+                        <label for="">Body Fat %</label>
+                        <input type="text" name="user_bfp" id="body-fat-percentage">
+                        <p class="error-text">0</p>
+                    </div>
+                    <br>
+                    <p id="success-message"></p>
+                    <button type="submit" id="log-info-btn" class="btn-dark">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+
+<%- include ('../_partial/_sidebar-chart-options'); -%>
+<%- include ('../_partial/_footer'); -%>
+<script src="../../public/scripts/weight-chart.js" type="module"></script>
+<script src="../../public/scripts/log-info.js"></script>

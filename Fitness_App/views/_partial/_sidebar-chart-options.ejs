@@ -1,0 +1,48 @@
+<aside class="sidebar">
+    <form id="chart-options">
+        <fieldset>
+            <h3>Select Chart</h3>
+            <div>
+                <button id="weight-btn" class="btn-light">Weight</button>
+                <button id="body-fat-btn" class="btn-light">Body Fat %</button>
+            </div>
+            <div class="input-label-container" id="daily-values-container">
+                <label for="">Daily Values</label>
+                <input type="checkbox" name="Daily Values" id="checkbox-daily-values">
+            </div>
+            <div class="input-label-container" id="seven-day-running-avg-container">
+                <label for="">7 Day Running Avg</label>
+                <input type="checkbox" name="7 Day Running Average" id="checkbox-seven-day-running-avg">
+            </div>
+        </fieldset>
+        <fieldset>
+            <h3>Options</h2>
+                <div class="input-label-container" id="start-date-container">
+                    <label for="">Start Date</label>
+                    <input type="date" name="Start Date" value="Start Date" id="start-date" title="Start Date">
+                    <p class="error-text">0</p>
+                </div>
+                <div class="input-label-container" id="end-date-container">
+                    <label for="">End Date</label>
+                    <input type="date" name="End Date" value="End Date" id="end-date" title="End Date">
+                    <p class="error-text">0</p>
+                </div>
+    
+                <div class="input-label-container" id="min-y-value-container">
+                    <label for="">Min Y Value</label>
+                    <input type="text" name="Values" id="min-y-value">
+                    <p class="error-text">0</p>
+                </div>
+                <div class="input-label-container" id="max-y-value-container">
+                    <label for="">Max Y Value</label>
+                    <input type="text" name="7 Day Running Average" id="max-y-value">
+                    <p class="error-text">0</p>
+                </div>
+                <div class="input-label-container" id="show-grid-container">
+                    <label for="">Show Grid Lines</label>
+                    <input type="checkbox" name="7 Day Running Average" id="grid-lines">
+                </div>
+        </fieldset>
+        <button class="btn-light" id="draw-chart-btn">Draw Chart</button>
+    </form>
+</aside>
