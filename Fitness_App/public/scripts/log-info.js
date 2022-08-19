@@ -7,10 +7,6 @@ logInfoForm.addEventListener("submit", async function (event)
         //Create new formData object with key value pairs corresponding to form input
         const formData = new FormData();
 
-        //Could just construct formData using (this) as an argument, but my dumbass set up the 
-        //SQL table wrong
-
-        //Also, f**k formData objects.  Seriously. Massive f***ing pain in the a**.
         formData.append(this[1].name, this[1].value);
         formData.append(this[2].name, this[2].value);
         formData.append(this[3].name, this[3].value);
