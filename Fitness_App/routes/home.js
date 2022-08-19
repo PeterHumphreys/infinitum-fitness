@@ -44,7 +44,7 @@ router.get("/workout-routines", userController.verifySession, function(req, res)
 //Add Workout Routines
 router.get("/add-workout-routine", userController.verifySession, function(req, res)
 {
-    res.render("home/add-workout-routine", {user: req.session.user, heading: "New Workout"});
+    res.render("home/add-workout-routine", {user: req.session.user, heading: "New Workout Routine"});
 });
 
 //Nutrition
