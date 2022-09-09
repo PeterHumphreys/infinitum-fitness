@@ -147,7 +147,7 @@ function hideError(inputField)
     messageEl.setAttribute("style", "opacity:0");
 }
 
-//Displays the error messag for a field
+//Displays the error message for a field
 function showError(inputField, message)
 {
     let messageEl = inputField.nextElementSibling;
