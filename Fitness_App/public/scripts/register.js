@@ -31,7 +31,7 @@ registerForm.addEventListener("submit", async function (event)
     //Attempt to POST JSON data to server
     try
     {
-        const response = await fetch('http://localhost:3000/api/register',
+        const response = await fetch('http://localhost:4000/api/register',
         {
             method: 'POST',
             headers:

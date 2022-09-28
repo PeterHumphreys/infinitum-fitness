@@ -186,7 +186,7 @@ imagePickerForm.addEventListener("submit", async function (event)
                 method: 'POST',
                 body: formData
             }
-            const response = await fetch('http://localhost:3000/upload/image-upload', data);
+            const response = await fetch('http://localhost:4000/upload/image-upload', data);
 
             //message.innerHTML = "Succesfully uploaded image"
 
@@ -232,7 +232,7 @@ async function updateImage(pathName)
     //Attempt to POST JSON data to server
     try
     {
-        const response = await fetch('http://localhost:3000/api/update-user-profile-picture',
+        const response = await fetch('http://localhost:4000/api/update-user-profile-picture',
         {
             method: 'POST',
             headers:

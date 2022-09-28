@@ -1,0 +1,160 @@
+form.submission-form, .step 
+{
+    display: flex;
+    flex-direction: column;
+    min-width:250px;
+    width:350px;
+    max-width: 350px;
+    input, select 
+    {
+        margin:auto;
+        padding:15px;
+        min-width:250px;
+        width:350px;
+        max-width: 350px;
+        font-size: 16px;
+        &::placeholder
+        {
+            color:$color_light_gray;
+            font-size: 16px;
+            font-weight:300;
+        }
+        option
+        {
+            color:$color_primary;
+        }
+
+    }
+    //gap:25px;
+}
+
+form#chart-options
+{
+    padding:30px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    fieldset
+    {
+        background: $color_secondary;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    
+        input
+        {
+            
+            padding:3px;
+
+        }
+        .input-label-container
+        {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            label
+            {
+                flex-basis:50%;
+            }
+
+            .error-text
+            {
+                width:100%;
+            }
+        }
+    }
+}
+
+form#log-info-form
+{    
+    max-width: 500px;
+    width: 500px;
+    padding:30px;
+    fieldset
+    {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    
+        input
+        {
+            border:none;
+            background:$color_accent;
+            padding:15px;
+        }
+
+        .input-label-container
+        {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            label
+            {
+                flex-basis:40%;
+            }
+
+            input
+            {
+                flex-basis:60%
+            }
+
+            .error-text
+            {
+                width:100%;
+            }
+        }
+    }
+}
+
+
+
+fieldset
+{
+    border:none;
+}
+
+.step
+{
+    //opacity: 0;
+    display:none;
+}
+
+.step-active
+{
+    //opacity: 0;
+    display:flex;
+}
+
+.active
+{
+    opacity: 1!important;
+}
+
+::placeholder, input, select, textarea
+{
+    background-color:transparent;
+    color: #fff;
+}
+
+input, select, textarea
+{
+    border: $border_small;
+    //border-radius: 15px;
+
+}
+
+textarea{
+    padding:1em;
+}
+
+
+.error-text
+{
+    color:$color_text_error;
+    opacity:0;
+    padding:1px;
+    margin:5px;
+    text-align: left;
+}

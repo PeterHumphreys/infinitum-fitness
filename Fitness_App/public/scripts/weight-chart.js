@@ -1,6 +1,6 @@
 import {CustomChart} from './custom-chart.js';
 
-const SERVER_URL = 'http://localhost:3000/api/';
+const SERVER_URL = 'http://localhost:4000/api/';
 const DAILY_WEIGHTS_PATH = 'weights-daily-by-dates-entry';
 
 const DEFAULT_MINY = 170;

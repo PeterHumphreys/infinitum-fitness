@@ -1,0 +1,30 @@
+@import '../core/config';
+
+.week-day-picker 
+{
+  display:flex;
+  justify-content: center;
+  gap:10px;
+  input[type=checkbox], input[type=radio] 
+  {
+    display: none!important;
+    & + label 
+    {
+      background-color: rgba($color_primary, .7);
+      border-radius: 6px;
+      height: 50px;
+      width: 50px;
+      margin-right: 3px;
+      line-height: 50px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    &:checked + label, & + label:hover, &:checked + label, & + label:hover
+    {
+      background: $color_highlight;
+      color: $color_primary
+    }
+  }
+}
+
