@@ -33,3 +33,16 @@ PRIMARY KEY (historical_date, user_id),
 FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
+/*Create Test User*/
+INSERT INTO user(user_profile_photo_URL, user_first_name, user_last_name, user_email, user_password, user_dob, user_sex, user_height, user_activity_level, user_fitness_goal, user_date_joined)
+  VALUES("\\images\\placeholder\\account-placeholder.jpg", "Amruth", "Vishwaryathan", "avishwaryathan@test.com", "123", "1992-08-04", "M", 74, "Lightly Active", "Gain Muscle","2022-09-29");
+
+INSERT INTO user_history(historical_date, user_id, weight, body_fat_percent) 
+VALUES ("2022-09-23", 2, 177.2, "14.2"),
+("2022-09-24", 2, 178.8, "14.6"),
+("2022-09-25", 2, 182, "12.7"),
+("2022-09-26", 2, 182, "13.2"),
+("2022-09-27", 2, 180, "13.0"),
+("2022-09-28", 2, 180, "12.5"),
+("2022-09-29", 2, 181, "12.9")
+
