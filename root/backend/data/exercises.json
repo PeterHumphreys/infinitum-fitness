@@ -1,0 +1,34 @@
+{
+ "exercises" : [
+  {
+    "name" : "Bench Press",
+    "imagePath" : "/images/exercises/woman-running.jpg",
+    "muscles" :
+    [
+      "Chest"
+    ],
+    "equipmentNeeded" :"Barbell"
+
+  },
+  {
+    "name" : "Deadlift",
+    "imagePath" : "/images/exercises/woman-running.jpg",
+    "muscles" :
+    [
+      "Lower Back", "Hamstrings"
+    ],
+    "equipmentNeeded" :"Barbell"
+
+  },
+  {
+    "name" : "Squat",
+    "imagePath" : "/images/exercises/woman-running.jpg",
+    "muscles" :
+    [
+      "Quads", "Glutes"
+    ],
+    "equipmentNeeded" :"Barbell"
+
+  }
+ ]
+}

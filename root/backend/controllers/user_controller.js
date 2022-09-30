@@ -1,4 +1,3 @@
-/*const { getUserByEmail } = require("../models/user");*/
 const User = require("../models/user");
 const BS = '\\\\';
 

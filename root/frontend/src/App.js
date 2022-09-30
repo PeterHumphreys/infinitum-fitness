@@ -47,8 +47,8 @@ function App() {
       try 
       {
         const response = await api.get('/routines');
-        setRoutines(response.data);
-        //console.log(response.data);
+        setRoutines(response.data.routines);
+        console.log(response.data.routines);
       }
       catch(err)
       {

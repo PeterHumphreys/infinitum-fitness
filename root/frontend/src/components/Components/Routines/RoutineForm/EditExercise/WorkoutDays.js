@@ -5,7 +5,7 @@ function WorkoutDays({activeDays}) {
     <select id='workout-day'>
       {
         Object.entries(activeDays).filter(
-          ([key, value]) => value).map(([key]) => (<option>{key}</option>))
+          ([key, value]) => value).map(([key]) => (<option key={key}>{key}</option>))
         }
     </select>
   )

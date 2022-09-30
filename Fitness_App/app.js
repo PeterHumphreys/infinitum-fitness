@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const session = require("express-session");
+const cors = require("cors");
 /*
 const mysql = require('mysql2');
 const MySQlStore = require("express-mysql-session")(session);
@@ -22,6 +23,8 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
+
+app.use(cors());
 
 // Middleware Below
 
