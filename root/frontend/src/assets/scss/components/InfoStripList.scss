@@ -1,0 +1,10 @@
+.info-strip-list 
+{
+  padding:30px;
+  max-height: 100vh;
+  overflow-y: scroll;
+  display:flex;
+  flex-direction: column;
+  gap:15px;
+  width:600px;
+}

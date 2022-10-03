@@ -1,16 +1,11 @@
-import {FiEdit} from 'react-icons/fi'
-
-function Heading({imgPath, title, canEdit}) {
+function Heading({options}) {
   return (
     <h1 
-      className = {imgPath ? 'img-heading' : ''} 
-      contentEditable = {canEdit ? true : false}>
-
-        {imgPath && <img src={imgPath} className={canEdit && 'clickable'} title={canEdit && 'Change the routine image'}/>}
-        &nbsp;
-        {title}
-        &nbsp;
-        {canEdit && <button className='btn-icon'><FiEdit/></button>}
+      className = {options.imgPath ? 'img-heading' : ''} 
+    >
+      {options.imgPath && <img src={options.imgPath} alt={options.altText}/>}
+      &nbsp;
+      {options.title}
     </h1>
   )
 }

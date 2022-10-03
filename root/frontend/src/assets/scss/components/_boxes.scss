@@ -146,7 +146,7 @@
 
     padding:10px 30px 10px 30px;
     h4{
-        font-size:22px;
+        font-size:18px;
         font-weight: 400;
     }
 
@@ -158,26 +158,11 @@
     }
 }
 
-.info-strip
-{
-    //Styling
-    background:$color_secondary;
-    @extend .strip;
-    svg
-    {
-        margin-left:auto;
-        align-self: flex-end;
-    }
-}
 
-.img-strip
-{
-    //Styling
-    background:$color_accent;
-    @extend .strip;
-}
 
-.modal
+
+
+/*.modal
 {
     z-index:9999;
     position:fixed;
@@ -224,3 +209,4 @@
         opacity:1;
     }
 }
+*/

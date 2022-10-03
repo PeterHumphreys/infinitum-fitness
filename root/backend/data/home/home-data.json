@@ -1,0 +1,54 @@
+{
+  
+ "discoverNewWorkouts" : [
+    {
+      "id" : "0",
+      "linkPath" : "#",
+      "imgPath" : "/images/home/discover-new-workouts/jacked-dude-squatting.jpg",
+      "title" : "Big Moe's 6 weeks to A Better Steroid Cycle"
+    },
+    
+    {
+      "id" : "1",
+      "linkPath" : "#",
+      "imgPath" : "/images/home/discover-new-workouts/db-rows.jpg",
+      "title" : "Whatever this Guy is Doing"
+    },
+    
+    {
+      "id" : "2",
+      "linkPath" : "#",
+      "imgPath" : "/images/home/discover-new-workouts/woman-running.jpg",
+      "title" : "Jogging with Jeannie"
+    },
+    
+    {
+      "id" : "3",
+      "linkPath" : "#",
+      "imgPath" : "/images/home/discover-new-workouts/leaping.jpg",
+      "title" : "Increase your vertical by leaps and bounds"
+    }
+  ],
+
+  "storeItems" : 
+  [
+    {
+      "id" : "0",
+      "linkPath" : "#",
+      "imgPath" : "/images/home/store/whey.jpg",
+      "title" : "Wayne's Whey"
+    },
+    {
+      "id" : "1",
+      "linkPath" : "#",
+      "imgPath" : "/images/home/store/casein.jpg",
+      "title" : "Casey's Casein"
+    },
+    {
+      "id" : "2",
+      "linkPath" : "#",
+      "imgPath" : "/images/home/store/fish-oil.jpg",
+      "title" : "Freddie's Fish Oil"
+    }
+  ]
+}

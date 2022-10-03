@@ -1,0 +1,116 @@
+
+.info-strip
+{
+    width:100%;
+    display:grid;
+    align-items: center;
+    gap:15px;
+    text-align:left;
+    &.add-info-strip
+    {
+        grid-template-columns: 60px 1fr 22px 22px;
+        &.selected 
+        {
+            background-color:rgba(white, .75);
+            h4, p
+            {
+                color:$color_primary;
+            }
+            svg 
+            {
+                fill:$color_primary;
+            }
+        }
+        &.current-exercise 
+        {
+            background-color: $color_highlight;
+        }
+        &:hover 
+        {
+            background-color: $color_highlight;
+            cursor: pointer;
+        }
+    }
+    &.detail-info-strip
+    {
+        grid-template-columns: 60px 1fr 22px 22px;
+        h4
+        {
+            text-align: center;
+            padding-bottom:5px;
+        }
+        ul 
+        {
+            li 
+            {
+                padding:2px 0 2px 0;
+                display:flex;
+                gap: 5px;
+                & :nth-child(1)
+                {
+                    flex-basis: 33%;
+                    flex: 1;
+                }
+                & :nth-child(2)
+                {
+                    flex-basis: 66%;
+                    flex: 1;
+                }
+            }
+        }
+    }
+
+    //Styling
+    background: rgba($color_primary, .5);
+    padding:10px 30px 10px 30px;
+    img 
+    {
+      width:60px;
+      height:60px;
+      object-fit: cover;
+      grid-column: 1/2;
+    }
+    h4{
+        font-size:18px;
+        font-weight: 400;
+        grid-column:2/3;
+    }
+
+    svg, input[type="checkbox"]
+    {
+        @extend .hoverable;
+        font-size:26px;
+        margin:auto;
+        &.rotate180
+        {
+            transform: rotate(180deg);
+        }
+    }
+    input[type="checkbox"]
+    {
+        height: 26px;
+        width: 26px;
+        &:checked, &:hover 
+        {
+            accent-color: $color_highlight;
+        }
+    }
+    .info 
+    {
+        grid-column:1/-1;
+        grid-row:2/3;
+        display:none;
+        max-width: 600px;
+        &.expanded
+        {
+            display:block;
+        }
+    }
+}
+
+.img-strip
+{
+    //Styling
+    background:$color_accent;
+    @extend .strip;
+}

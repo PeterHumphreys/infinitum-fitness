@@ -144,7 +144,8 @@ select
 {
     width:100%;
     padding:5px;
-    font-size:18px;
+    font-size:18px;    
+    max-height: 40px;
     option
     {
         color:$color_primary;

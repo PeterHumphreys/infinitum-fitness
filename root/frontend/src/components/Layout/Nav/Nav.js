@@ -1,17 +1,11 @@
-import React from 'react'
-import {FaCarrot, FaStore, FaQuestionCircle, FaChevronCircleLeft} from 'react-icons/fa';
-import {IoMdStats, IoMdSettings, IoMdSearch, IoIosArrowDropleftCircle} from 'react-icons/io';
-import {AiFillCalendar} from 'react-icons/ai';
-import {GiWeightLiftingUp} from 'react-icons/gi';
-import {Link, useLocation} from 'react-router-dom';
-
-import NavList from './NavList';
-
+import NavLink from './NavLink';
+import {navData} from '../../../lib/NavData';
 import {useState} from 'react';
+import {FaChevronCircleLeft} from 'react-icons/fa';
 
 function Nav() {
-  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
-  let location = useLocation();
+  const [isNavCollapsed, setIsNavCollapsed] = useState(false);
+  //let location = useLocation();
   return (
     <nav 
       id='nav' 
@@ -20,7 +14,9 @@ function Nav() {
         isNavCollapsed ? 'nav-closed' : ''
       }
     >
-      <FaChevronCircleLeft 
+
+      {
+        <FaChevronCircleLeft 
         id="expand-icon"
         className=
         {
@@ -30,9 +26,20 @@ function Nav() {
         }
         onClick={()=>{
           setIsNavCollapsed(!isNavCollapsed)
-          //console.log(location.pathname)
           }}/>
-      <NavList/>
+        }
+      
+      
+      <ul id="vertical-nav-list">
+
+                {
+                  navData.map((navItem) =>
+                  {
+                    if (true)
+                    return <NavLink key={`nav-link-${navItem.id}`} navItem = {navItem}/>
+                  })
+                }
+      </ul>
     </nav>
   )
 }

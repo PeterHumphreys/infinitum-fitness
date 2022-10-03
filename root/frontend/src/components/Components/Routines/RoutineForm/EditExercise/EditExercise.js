@@ -1,17 +1,16 @@
 
 import {FaPlusSquare, FaMinusSquare} from 'react-icons/fa';
 import WorkoutDays from './WorkoutDays';
-import EditExerciseList from './EditExerciseList';
+import DetailInfoStripList from '../../../General/DetailInfoStripList';
 
-function EditExercise({activeDays, handleModalToggle}) {
+function EditExercise({activeDays, handleModalToggle, exercises}) {
   return (
     <div className="input-container">
       <WorkoutDays activeDays = {activeDays}/>
-      <EditExerciseList/>
+      <DetailInfoStripList content = {exercises}/>
       <div id='add-remove-workout'>          
-        <button className="btn-icon"><FaMinusSquare/></button>
         <button className="btn-icon"
-          onClick={handleModalToggle}><FaPlusSquare/></button>
+          onClick={(e)=>{handleModalToggle(e, true)}}><FaPlusSquare/></button>
       </div>
     </div>
   )

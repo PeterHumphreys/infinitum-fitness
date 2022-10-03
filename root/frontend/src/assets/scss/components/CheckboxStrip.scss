@@ -1,0 +1,16 @@
+.checkbox-strip
+{
+  display:flex;
+
+  input[type="checkbox"]
+  {
+    height:40px;
+    width:40px;
+    border:none;
+    border-radius:0px;
+    &:checked, &:hover
+    {
+      accent-color: $color_highlight;
+    }
+  }
+}

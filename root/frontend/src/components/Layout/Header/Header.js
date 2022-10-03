@@ -1,11 +1,8 @@
-import React from 'react'
+import AccountInfo from './AccountInfo';
 import Heading from './Heading'
-import {useNavigate} from 'react-router-dom';
-import {MdNavigateBefore, MdNavigateNext} from 'react-icons/md';
 import {BiMenuAltLeft} from 'react-icons/bi';
 
-function Header({imgPath, title, canEdit}) {
-  const navigate = useNavigate();
+function Header({user, options, accountBoxData}) {
   return (
     <header className='info-bar'>
       
@@ -13,11 +10,8 @@ function Header({imgPath, title, canEdit}) {
         <BiMenuAltLeft id="menu-btn"/>
       </div>
 
-      <div id="back-and-forth">                
-          <MdNavigateBefore onClick={()=>{navigate(-1)}} id="back-arrow"/>
-          <MdNavigateNext onClick={()=>{navigate(1)}} id="forward-arrow"/>
-      </div>
-      <Heading imgPath={imgPath} title = {title} canEdit = {canEdit} />
+      <Heading options = {options} />
+      <AccountInfo accountBoxData ={accountBoxData}/>
     </header>
   )
 }

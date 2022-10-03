@@ -17,7 +17,7 @@ logInfoForm.addEventListener("submit", async function (event)
 
         try
         {
-            const response = await fetch('http://localhost:4000/api/entries',
+            const response = await fetch('http://localhost:5000/api/entries',
             {
                 method: 'POST',
                 headers:

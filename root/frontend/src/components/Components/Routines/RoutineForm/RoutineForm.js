@@ -1,12 +1,18 @@
+import {useEffect, useState} from 'react';
 import {VscSave} from 'react-icons/vsc';
 import WeekDayPicker from './WeekDayPicker';
-import {useState} from 'react';
 import EditExercise from './EditExercise/EditExercise';
+import AddInfoStripList from '../../General/AddInfoStripList';
+import AddExercise from '../../General/AddExercise';
+import Modal from '../../General/Modal';
 
 function RoutineForm() {
 
   const [description, setDescription] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [content, setContent] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const [activeDays, setActiveDays] = useState( 
     {
@@ -20,9 +26,56 @@ function RoutineForm() {
     }
   ); 
 
-  function handleModalToggle()
+  const [selectedExercises, setSelectedExercises] = useState([]);
+
+  useEffect(()=>{
+      async function fetchWorkouts()
+      {
+        try
+        {
+          const response = await fetch("https://wger.de/api/v2/exercise/?language=2&limit=231")   
+          const data = await response.json();
+          const {results} = data;
+          setContent(results);
+          setIsLoading(false);
+
+        }
+        catch(err)
+        {
+          console.log(err)
+        }
+    }
+    fetchWorkouts();
+  }, []);
+
+  
+  function handleModalToggle(e, open)
   {
-    setModalIsOpen(!modalIsOpen);
+    e.preventDefault();
+    setModalIsOpen(open);
+  }
+
+  function handleAddExercise(id)
+  {
+    const exercise = content.find(exercise => exercise.id === id);
+    setSelectedExercises((prev) =>
+    {
+      const newArray= [...prev, exercise]
+      return newArray
+    })
+  }
+
+  function handleRemoveExercise(id)
+  {
+    setSelectedExercises((prev) =>
+    {
+      const newArray= prev.filter(
+        (exercise) => 
+        {
+          return exercise.id !== id
+        });
+      return newArray
+    })
   }
 
   /**
@@ -53,49 +106,61 @@ function RoutineForm() {
 
 
   return (
-    <form className='grid-form'>
-      <fieldset id='description-field'>
-        <legend>Description</legend>
-        <div className='input-container'>
-          <textarea id="edit-description" className="content-box" name="editDescription" cols="30" rows="10" placeholder="Enter description here"
-            onChange={(e)=>{setDescription(e.target.value);}}/>
-        </div>
-      </fieldset>
+    <>
+      <form className='grid-form'>
+        <fieldset id='description-field'>
+          <legend>Description</legend>
+          <div className='input-container'>
+            <textarea id="edit-description" className="content-box" name="editDescription" cols="30" rows="10" placeholder="Enter description here"
+              onChange={(e)=>{setDescription(e.target.value);}}/>
+          </div>
+        </fieldset>
 
-    
-      <fieldset id="edit-details">
-        <legend>Details</legend>
-        <div className='input-container'>
-          <div className='input-group'>
-            <label className="rating-label">Difficulty</label>
-            <input
-                className="rating"
-                max="5"
-                step="0.5"
-                type="range"
-            />
+      
+        <fieldset id="edit-details">
+          <legend>Details</legend>
+          <div className='input-container'>
+            <div className='input-group'>
+              <label className="rating-label">Difficulty</label>
+              <input
+                  className="rating"
+                  max="5"
+                  step="0.5"
+                  type="range"
+              />
+            </div>
+            <div className='input-group'>
+              {/*<label>Length</label><input type="number" name="length-weeks" id="length-weeks" min="1" max="52" step="1" value="1"/>*/}
+            </div>
+            <div className='input-group'>
+              {/*<label>Avg Duration</label> <input type="number" name="duration-minutes" id="duration-minutes" min="1" max="400" step="1" value="60"/>*/}
+            </div>
+            <div className="input-group vertical">
+              <label>Schedule </label>
+              <WeekDayPicker handleChecked = {handleChecked} setActiveDays={setActiveDays}/>
+            </div>
           </div>
-          <div className='input-group'>
-            {/*<label>Length</label><input type="number" name="length-weeks" id="length-weeks" min="1" max="52" step="1" value="1"/>*/}
-          </div>
-          <div className='input-group'>
-            {/*<label>Avg Duration</label> <input type="number" name="duration-minutes" id="duration-minutes" min="1" max="400" step="1" value="60"/>*/}
-          </div>
-          <div className="input-group vertical">
-            <label>Schedule </label>
-            <WeekDayPicker handleChecked = {handleChecked} setActiveDays={setActiveDays}/>
-          </div>
-        </div>
-      </fieldset>
+        </fieldset>
 
-      <fieldset id="edit-workout">
-        <legend>Workouts</legend>
-        <EditExercise activeDays={activeDays} handleModalToggle={handleModalToggle}/>
-      </fieldset>
-      <div id="btn-container">
-          <button type="submit" className="btn-dark"><VscSave/> Save</button> 
-      </div>
-    </form>
+        <fieldset id="edit-workout">
+          <legend>Workouts</legend>
+          <EditExercise activeDays={activeDays} handleModalToggle= {handleModalToggle} exercises={selectedExercises}/>
+        </fieldset>
+        <div id="btn-container">
+            <button type="submit" className="btn-dark"><VscSave/> Save</button> 
+        </div>
+      <Modal open = {modalIsOpen} handleModalToggle = {handleModalToggle}>
+        {
+          isLoading && <p>Loading data...</p>
+        }
+        {
+          !isLoading &&
+          <AddExercise content ={content} handleAddExercise={handleAddExercise} handleRemoveExercise={handleRemoveExercise}/>
+        }
+      </Modal>
+      </form>
+
+    </>
   )
 }
 

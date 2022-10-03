@@ -5,7 +5,7 @@
   display:flex;
   justify-content: center;
   gap:10px;
-  input[type=checkbox], input[type=radio] 
+  input[type=checkbox]
   {
     display: none!important;
     & + label 

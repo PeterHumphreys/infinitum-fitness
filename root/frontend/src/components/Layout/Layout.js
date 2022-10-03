@@ -5,12 +5,16 @@ import Sidebar from './Sidebar';
 import Footer from './Footer';
 import { Outlet } from 'react-router-dom';
 
-function Layout({options}) {
+function Layout({isLoading, options, accountBoxData}) {
   return (
     <>
       <Nav/>
-      <Header imgPath = {options.imgPath} title= {options.title} canEdit = {options.canEdit}/>
-      <Outlet/>
+      <Header 
+        options = {options}
+        accountBoxData = {accountBoxData}
+        />
+      <Outlet
+        isLoading = {isLoading}/>
       <Sidebar/>
       <Footer/>
     </>
