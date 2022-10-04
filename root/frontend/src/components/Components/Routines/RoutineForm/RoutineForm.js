@@ -8,12 +8,19 @@ import Modal from '../../General/Modal';
 
 function RoutineForm() {
 
+  //The description of the routine
   const [description, setDescription] = useState("");
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [content, setContent] = useState([]);
 
+  //Whether the modal is open
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  //The array of exercises loaded from API
+  const [exercises, setExercises] = useState([]);
+
+  //Whether data is loading
   const [isLoading, setIsLoading] = useState(true);
 
+  //Represents the days on which workouts are scheduled
   const [activeDays, setActiveDays] = useState( 
     {
       "Sunday" : false,
@@ -26,8 +33,28 @@ function RoutineForm() {
     }
   ); 
 
+  //Maps a day to an array of exercises
+  const [daysAndExercises, setDaysAndExercises] = useState({
+      "Sunday" : [],
+      "Monday" : [],
+      "Tuesday" : [],
+      "Wednesday" : [],
+      "Thursday" : [],
+      "Friday" : [],
+      "Saturday" : [],
+    }
+  );
+
+  //The current day that is being edited
+  const [currentDay, setCurrentDay] = useState("");
+
+  //Array of exercises that are selected for a given day
   const [selectedExercises, setSelectedExercises] = useState([]);
 
+
+  /**
+   * Load list of exercises (for now, getting from kind of junky but free API)
+   */
   useEffect(()=>{
       async function fetchWorkouts()
       {
@@ -36,7 +63,7 @@ function RoutineForm() {
           const response = await fetch("https://wger.de/api/v2/exercise/?language=2&limit=231")   
           const data = await response.json();
           const {results} = data;
-          setContent(results);
+          setExercises(results);
           setIsLoading(false);
 
         }
@@ -48,38 +75,81 @@ function RoutineForm() {
     fetchWorkouts();
   }, []);
 
-  
+  /**
+   * Opens or closes the modal
+   */
   function handleModalToggle(e, open)
   {
     e.preventDefault();
-    setModalIsOpen(open);
+    //If a current day is selected, open the modal
+    if (currentDay)
+    {
+      setModalIsOpen(open);
+    }
+    else
+    {
+      alert("You must have a day selected to add exercises.")
+    }
   }
 
+  /**
+   * Utility function that deep copies the daysAndExercises object 
+   * so that state can be properly updated
+   */
+  function deepCopyDaysAndExercises(prev)
+  {
+    const newObject = {};
+    Object.entries(prev).forEach((entry) =>
+    {
+      newObject[entry[0]] = [...entry[1]];
+    })
+    return newObject;
+  }
+
+  /**
+   * Adds the exercise specified by the id to the array of selected exercises
+   */
   function handleAddExercise(id)
   {
-    const exercise = content.find(exercise => exercise.id === id);
-    setSelectedExercises((prev) =>
+    //Get the exercise from the list
+    const exercise = exercises.find(exercise => exercise.id === id);
+    setDaysAndExercises((prev) =>
     {
-      const newArray= [...prev, exercise]
-      return newArray
-    })
-  }
+      //Deep copy previous object
+      const newObject = deepCopyDaysAndExercises(prev);
 
-  function handleRemoveExercise(id)
-  {
-    setSelectedExercises((prev) =>
-    {
-      const newArray= prev.filter(
-        (exercise) => 
-        {
-          return exercise.id !== id
-        });
-      return newArray
+      newObject[currentDay].push(exercise);
+      return newObject;
     })
   }
 
   /**
-   * Sets the days active based on which checkboxes are checked
+   * Removes the exercise specified by the id from the array of selected exercises
+   */
+  function handleRemoveExercise(id)
+  {
+    setDaysAndExercises((prev) =>
+    {
+      //Deep copy previous object
+      const newObject = deepCopyDaysAndExercises(prev);
+      
+      newObject[currentDay] = newObject[currentDay].filter(
+        (exercise) => 
+        {
+          return exercise.id !== id
+        });
+      return newObject;
+    })
+  }
+
+  function handleEditOptions(e)
+  {
+    e.preventDefault();
+    alert("Handle edit options")
+  }
+
+  /**
+   * Sets the days on which workouts will be scheduled based on which checkboxes are checked
    */
   function handleChecked(day)
   {
@@ -144,7 +214,17 @@ function RoutineForm() {
 
         <fieldset id="edit-workout">
           <legend>Workouts</legend>
-          <EditExercise activeDays={activeDays} handleModalToggle= {handleModalToggle} exercises={selectedExercises}/>
+          <EditExercise 
+            activeDays={activeDays} 
+            currentDay={currentDay} 
+            setCurrentDay={setCurrentDay} 
+            daysAndExercises = {daysAndExercises}
+            setDaysAndExercises = {setDaysAndExercises}
+            exercises={currentDay? daysAndExercises[currentDay] : []}
+            handleModalToggle= {handleModalToggle}
+            handleRemoveExercise={handleRemoveExercise}
+            handleEditOptions = {handleEditOptions}
+          /> 
         </fieldset>
         <div id="btn-container">
             <button type="submit" className="btn-dark"><VscSave/> Save</button> 
@@ -155,7 +235,15 @@ function RoutineForm() {
         }
         {
           !isLoading &&
-          <AddExercise content ={content} handleAddExercise={handleAddExercise} handleRemoveExercise={handleRemoveExercise}/>
+          <AddExercise 
+            exercises ={exercises} 
+            activeExercisesForDay = {currentDay? daysAndExercises[currentDay] : []}
+            handleAddExercise={handleAddExercise} 
+            handleRemoveExercise={handleRemoveExercise}
+            currentDay={currentDay} 
+            daysAndExercises = {daysAndExercises}
+            setDaysAndExercises = {setDaysAndExercises}
+          />
         }
       </Modal>
       </form>

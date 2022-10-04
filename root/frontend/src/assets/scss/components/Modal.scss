@@ -12,7 +12,7 @@
 
 .modal
 {
-    z-index:1000;
+    z-index:-1;
     position:fixed;
     height:100%;
     top:0;
@@ -63,6 +63,7 @@
 
     &.modal-active
     {
+        z-index:1000;
         visibility: visible;
         opacity:1;
     }

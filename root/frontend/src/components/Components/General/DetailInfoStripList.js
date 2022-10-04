@@ -2,13 +2,18 @@ import DetailInfoStrip from './DetailInfoStrip';
 import {useState, useRef} from 'react';
 
 
-function DetailInfoStripList({content, handleSelectExercise}) {
+function DetailInfoStripList({exercises, handleRemoveExercise, handleEditOptions}) {
   return (
     <div id="edit-exercise-list" className='info-strip-list' >
       {
-        content.map((content) =>
+        exercises.map((item) =>
         {
-          return <DetailInfoStrip key={content.uuid} content={content} handleSelectExercise={handleSelectExercise}/>
+          return <DetailInfoStrip 
+            key={item.uuid} 
+            exercise = {item}
+            handleRemoveExercise={handleRemoveExercise}
+            handleEditOptions = {handleEditOptions}
+            />
         } )}
     </div>
   )

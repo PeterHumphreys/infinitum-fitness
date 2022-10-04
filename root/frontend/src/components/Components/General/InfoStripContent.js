@@ -2,6 +2,7 @@ import {AiOutlineExpandAlt} from 'react-icons/ai';
 import {FaPlusSquare, FaMinusSquare} from 'react-icons/fa';
 import {useState} from 'react';
 
+//Delete this component
 function InfoStripContent({imgPath, imgAltText, title, content}) {
 
   const [expanded, setExpanded] = useState(false);

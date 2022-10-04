@@ -8,3 +8,24 @@
   gap:15px;
   width:600px;
 }
+
+.exercise-details 
+{
+  max-width:600px;
+  h3
+  {
+    padding-bottom:15px;
+  }
+  p.description 
+  {
+    padding-bottom:30px;
+  }
+  ul.attributes 
+  {
+    padding-left:15px;
+    li 
+    {
+      padding-bottom:15px;
+    }
+  }
+}
