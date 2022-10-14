@@ -7,13 +7,14 @@ async function getJsonPlaceholder(file)
   try
   {
     data = await fs.readFile(path.resolve(__dirname, (path.resolve(`data/${file}`))));
+    data = Object.values(JSON.parse(data))[0];
   }
   catch(err)
   {
     console.log(err);
     return null;
   }
-  return JSON.parse(data);
+  return data
 }
 
 module.exports = getJsonPlaceholder;

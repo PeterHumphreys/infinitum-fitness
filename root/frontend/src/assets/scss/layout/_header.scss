@@ -1,15 +1,17 @@
 @import '../components/utillities';
 
-header.info-bar
+header#header
 {
-    padding-top: 10px;
-    background:transparent;
-    padding-right:10px;
-    //background:$gradient_bg_image_overlay, url(/public/images/jacked-dude-squatting.jpg);
-    #account-info, #menu-btn-container, #back-and-forth
-    {
-        //z-index: 1000;
-    }
+    z-index: 1000;
+    padding: 5px;
+    position:sticky;
+    width: 100%;
+    display:flex;
+    top:0;
+    padding:5px;
+    background-color: rgba($color_primary,.9);
+    backdrop-filter: blur(10px);
+
     #menu-btn-container
     {
         max-height: 60px;   
@@ -21,26 +23,12 @@ header.info-bar
         }
     }
 
-    #back-and-forth
-    {
-        max-height: 60px;
-        svg
-        {
-            @extend .hoverable;
-            opacity: .6;
-            width:50px;
-            height:50px;
-        }
-
-    }
-
     #account-info
     {
-        position: relative;
+        margin-left:auto;
+        padding:10px;
         height: 60px;
         max-height: 60px;
-        max-width:fit-content;
-        justify-self: right;
         align-items: center;
         display: flex;
         background-color: $color_secondary;
@@ -52,34 +40,26 @@ header.info-bar
             z-index: 667;
         }
         
-        a
-        {
-            padding: 10px;
-            svg 
-            {
-                width:25px;
-                fill: rgba(255,255,255,.5);
-            }
-
-        }
 
         #bell-icon
         {
-            margin: 0 5px 0 5px;
+            margin-left: 10px;
             display:flex;
             transition: .1s;
             svg
             {
                 @extend .hoverable;
+                width:20px;
                 opacity:.6;
             }
         }
 
         #account-avatar
         {
-            margin: 0;
+            margin: 0 5px;
             display:flex;
             align-items: center;
+            padding:0 10px;
             img
             {
                 width: 30px;
@@ -99,23 +79,19 @@ header.info-bar
                 color:$color_highlight;
             }
         }
-        svg#account-options-icon
+        #account-options-btn
         {
-            @extend .hoverable;
             display:inherit;
-            width:20px;
-            height:20px;
-            padding:5px;
-            margin-right: 10px;
-            cursor:pointer;
             border-radius: 50%;
+            padding:3px;
+            margin-right: 10px;
             background-color:$color_highlight;
             box-shadow: $shadow-really_small;
-            transition:1s;
-            -webkit-transition: 1s;
-            -moz-transition: 1s;
-            transform: rotate(90deg);
-
+            svg 
+            {
+                width:15px;
+                height:15px;
+            }
             &:hover{
                 background-color: $color_white;
             }
@@ -164,20 +140,23 @@ header.info-bar
 // --- Desktop ---------------------------------------------------------------
 @media (min-width: $media_desktop)
 {
-    header.info-bar
+    header#header
     {
+        display:inherit;
+        justify-content: right;
+        background:none;
+        backdrop-filter: none;
+        position:inherit;
         #menu-btn-container
         {
             display:none;
         }
-
-        h1
-        {
-            text-align: left;
-        }
-
         #account-info
         {
+            position:fixed;
+            right:5px;
+            top:5px;
+            margin-left:0;
             #account-avatar
             {
                 p

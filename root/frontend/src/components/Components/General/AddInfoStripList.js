@@ -1,22 +1,19 @@
 import AddInfoStrip from './AddInfoStrip';
 import {useState, useRef} from 'react';
 
-function AddInfoStripList({currentDay, exercises, activeExercisesForDay, handleAddExercise, handleRemoveExercise, highlightedExercise, setHighlightedExercise}) {
+function AddInfoStripList({exerciseList, highlightedExercise, setHighlightedExercise}) {
   return (
     <div id="edit-exercise-list" className='info-strip-list' >
       {
-        exercises.map((item) =>
+        exerciseList.map((item) =>
         {
           return <AddInfoStrip 
-            activeExercisesForDay = {activeExercisesForDay}
-            currentDay = {currentDay}
+            key={item.id} 
+            exercise={item} 
             isCurrent = {highlightedExercise.id === item.id}
-            key={item.uuid} 
-            content={item} 
-            handleAddExercise={handleAddExercise} 
-            handleRemoveExercise={handleRemoveExercise}
             setHighlightedExercise = {setHighlightedExercise}/>
-        } )}
+        } )
+      }
     </div>
   )
 }

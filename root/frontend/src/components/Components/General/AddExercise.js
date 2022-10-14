@@ -1,26 +1,31 @@
 import AddInfoStripList from "./AddInfoStripList"
 import ExerciseDetails from "./ExerciseDetails";
-import {useState} from 'react';
+import {useContext, useState} from 'react';
+import RoutineFormContext from "../../../context/RoutineFormContext";
 
-function AddExercise({currentDay, exercises, activeExercisesForDay, handleAddExercise, handleRemoveExercise}) {
+function AddExercise() {
+
+  const {exerciseList, handleExerciseModalToggle} = useContext(RoutineFormContext);
 
   //The exercise whose details are currently being view.  Does not necessarily
   //represent a currently active exercise
-  const [highlightedExercise, setHighlightedExercise] = useState(exercises[0]);
+  const [highlightedExercise, setHighlightedExercise] = useState(exerciseList[0]);
   
   return (
     <div className="modal-children">
-      <ExerciseDetails 
-        exercise={highlightedExercise}/>
+      <ExerciseDetails highlightedExercise={highlightedExercise}/>
       <AddInfoStripList 
-        currentDay = {currentDay}
-        exercises = {exercises} 
-        activeExercisesForDay = {activeExercisesForDay}
-        handleAddExercise = {handleAddExercise} 
-        handleRemoveExercise = {handleRemoveExercise} 
+        exerciseList={exerciseList}
         highlightedExercise={highlightedExercise} 
         setHighlightedExercise = {setHighlightedExercise}
       />
+      <button 
+        className='btn-dark btn-save'
+        onClick={(e)=>
+          {
+            e.preventDefault();
+            handleExerciseModalToggle(e, false);}
+          }>Save</button>
     </div>
   )
 }

@@ -14,24 +14,6 @@ export const navData =
 
   },
   {
-    content : 
-    <li className = "vertical-nav-list-item" id="search-item">
-        <div className="relative-container">
-            <a href="#" id="search-link">
-              <IoMdSearch/>
-            </a> 
-            <form id="search-bar">      
-                <input className="search-input" type="text" placeholder = "search..." name="search"/>
-                <a href="#" id="search-btn">
-                  <IoMdSearch/>
-                </a>      
-            </form>
-
-        </div>
-      
-    </li>
-  },
-  {
     id: 2,
     icon : <IoMdStats/>,
     text : "Dashboard",

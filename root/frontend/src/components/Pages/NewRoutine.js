@@ -1,10 +1,13 @@
 import RoutineForm from '../Components/Routines/RoutineForm/RoutineForm'
+import { RoutineFormProvider } from '../../context/RoutineFormContext'
 
 function NewRoutine() {
   return (
-    <main className='Routines content-container'>
-      <RoutineForm/>
-    </main>
+    <RoutineFormProvider>
+      <main className='Routines content-container'>
+        <RoutineForm/>
+      </main>
+    </RoutineFormProvider>
   )
 }
 

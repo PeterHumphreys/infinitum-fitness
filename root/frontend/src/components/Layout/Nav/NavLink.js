@@ -4,13 +4,6 @@ import { Link, matchPath, useLocation, useMatch } from 'react-router-dom';
 function NavLink({navItem}) {
   let location = useLocation();
   return (
-    
-    navItem.content ? 
-    <>
-    {navItem.content}
-
-    </>
-    :
     <li className = "vertical-nav-list-item ">
         <Link 
           id ={navItem.id==='company-logo-link' ? navItem.id : `nav-link-${navItem.id}`}

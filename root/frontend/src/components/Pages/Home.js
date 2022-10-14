@@ -1,45 +1,49 @@
 import {useState, useEffect} from 'react';
-import api from '../../utilities/api/routines'
 import ImageBox from '../Components/Home/ImageBox';
+import useFetch from '../../hooks/useFetch';
 
-function Home(isLoading) {
-  const [data, setData] = useState();
-  //Get rid of this 
-  const [dataLoading, setDataLoading] = useState(true);
+function Home() {
+  
+  const {data : workoutData, loading : workoutLoading, error : workoutError } = useFetch("http://localhost:4000/home/discover-new-workouts");
+  const {data : storeData, loading : storeLoading, error : storeError } = useFetch("http://localhost:4000/home/store-items");
 
+  const [featuredWorkouts, setFeaturedWorkouts] = useState([]);
+  const [storeItems, setStoreItems] = useState([]);
 
   useEffect(()=>
   {
-    async function getHomeData()
-    {
-      try
-      {
-        const response = await api.get("/home");
-        setData(response.data)
-      }
-      catch(err)
-      {
-        console.log(err)
-      }
-      finally
-      {
-        setDataLoading(false);
-      }
-    }
+    setFeaturedWorkouts(workoutData);
+  }, [workoutData]);
 
-    getHomeData();
-  }, [])
+  useEffect(()=>
+  {
+    setStoreItems(storeData);
+  }, [storeData]);
 
+  /*useEffect(()=>
+  {
+    console.log("Invoking use effect")
+    setStoreItems(storeData);
+    console.log("State:")
+    console.log(storeItems)
+    console.log("data:")
+    console.log(storeData)
+    console.log("Loading:")
+    console.log(storeLoading)
+  }, [storeData]);*/
 
   return (
     <main className='Home content-container'>
         <h2>Discover New Workouts</h2>
         <section className="featured-grid" id="new-workouts-grid">
           {
-            dataLoading && <p>Loading...</p>
+            workoutLoading && <p>Loading...</p>
           }
           {
-            !dataLoading && data.discoverNewWorkouts.map((item, index) =>
+            !workoutLoading && workoutError && <p>An error occurred.</p>
+          }
+          {
+            !workoutLoading && !workoutError && featuredWorkouts.map((item) =>
             {
               return <ImageBox key={`dnw-${item.id}`} item = {item}/>
             })
@@ -49,12 +53,15 @@ function Home(isLoading) {
         <h2>Hot Items in the Store</h2>
         <section className="featured-grid" id="store-grid">
           {
-            dataLoading && <p>Loading...</p>
+            storeLoading && <p>Loading...</p>
           }
           {
-            !dataLoading && data.storeItems.map((item, index) =>
+            !storeLoading && storeError && <p>An error occurred.</p>
+          }
+          {
+            !storeLoading && !storeError && storeItems.map((item) =>
             {
-              return <ImageBox key={`dnw-${item.id}`} item = {item}/>
+              return <ImageBox key={`store-${item.id}`} item = {item}/>
             })
           }
 

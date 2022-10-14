@@ -1,8 +1,11 @@
 import {useState} from 'react';
+import { useContext } from 'react';
+import RoutineFormContext from '../../../../context/RoutineFormContext';
 
+function WeekDay({day, id}) {
+  const {handleChecked} = useContext(RoutineFormContext);
 
-function WeekDay({day, id, handleChecked}) {
-const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(false);
   return (
     <>
       <input 
@@ -10,7 +13,7 @@ const [checked, setChecked] = useState(false);
         id={id} 
         className="weekday"
         checked={checked}
-        onChange={(event) => {
+        onChange={() => {
           setChecked(!checked)
           handleChecked(day)}}
         />

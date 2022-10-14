@@ -124,6 +124,7 @@ header.info-bar
         display:grid;
         grid-template-areas: 
         'nav header header'
+        'nav heading heading'
         'nav content-container sidebar'
         'footer footer footer';
         grid-template-columns: 200px 1fr 25%;
@@ -136,7 +137,12 @@ header.info-bar
         grid-area: nav;
     }
 
-    header.info-bar
+    .heading
+    {
+        grid-area: heading;
+    }
+
+    header
     {
         grid-area: header;
     }

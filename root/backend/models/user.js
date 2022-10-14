@@ -148,7 +148,7 @@ class User
    {
       let sql = `SELECT * FROM USER`;
       const result = await db.execute(sql);
-      return result [0];
+      return result;
    }
 
    /**

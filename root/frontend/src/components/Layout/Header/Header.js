@@ -1,17 +1,31 @@
 import AccountInfo from './AccountInfo';
-import Heading from './Heading'
 import {BiMenuAltLeft} from 'react-icons/bi';
+import useScrolled from '../../../hooks/useScroll';
+import {useContext} from 'react';
+import LayoutContext from '../../../context/LayoutContext';
+import DataContext from '../../../context/DataContext';
 
-function Header({user, options, accountBoxData}) {
+function Header() {
+
+  const {toggleNav} = useContext(LayoutContext);
+  const {accountBoxData} = useContext(DataContext)
+  const scrolled = useScrolled();
   return (
-    <header className='info-bar'>
+    <header 
+      id='header'
+      className=
+      {
+        scrolled ? 'scrolled' : ''
+      }>
       
       <div id = "menu-btn-container">
-        <BiMenuAltLeft id="menu-btn"/>
+        <button className='btn-icon'
+          onClick= {toggleNav}>
+          <BiMenuAltLeft id="menu-btn"/>
+        </button>
       </div>
-
-      <Heading options = {options} />
       <AccountInfo accountBoxData ={accountBoxData}/>
+
     </header>
   )
 }

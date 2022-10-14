@@ -87,6 +87,22 @@ button:hover, input[type=submit]:hover{
     }
 }
 
+.btn-image
+{
+    @extend .btn-icon;
+    img 
+    {
+        width:50px;
+    }
+    &:hover 
+    {
+        img 
+        {
+            opacity:.25;
+        }
+    }
+}
+
 .btn-hidden
 {
     opacity: 0;

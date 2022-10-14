@@ -1,33 +1,37 @@
 import NavLink from './NavLink';
 import {navData} from '../../../lib/NavData';
 import {useState} from 'react';
-import {FaChevronCircleLeft} from 'react-icons/fa';
+import {FaChevronLeft} from 'react-icons/fa';
+import {useContext} from 'react';
+import LayoutContext from '../../../context/LayoutContext';
 
 function Nav() {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
-  //let location = useLocation();
+  const {isNavExpanded, toggleNav} = useContext(LayoutContext);
   return (
     <nav 
       id='nav' 
       className=
       {
-        isNavCollapsed ? 'nav-closed' : ''
+        isNavExpanded ? 'nav-expanded' : ''
       }
     >
 
       {
-        <FaChevronCircleLeft 
-        id="expand-icon"
-        className=
-        {
-          isNavCollapsed ?
-          'open-icon':
-          ''
-        }
-        onClick={()=>{
-          setIsNavCollapsed(!isNavCollapsed)
-          }}/>
-        }
+        //Desktop only
+        <button 
+          id="expand-icon"
+          className=
+          {
+            isNavCollapsed ?
+            'open-icon btn-icon':
+            'btn-icon'
+          }
+          onClick={toggleNav}
+          >
+            <FaChevronLeft />
+          </button>
+      }
       
       
       <ul id="vertical-nav-list">

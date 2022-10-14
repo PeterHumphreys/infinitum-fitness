@@ -1,253 +1,167 @@
-import {useEffect, useState} from 'react';
+import {useContext} from 'react';
 import {VscSave} from 'react-icons/vsc';
 import WeekDayPicker from './WeekDayPicker';
 import EditExercise from './EditExercise/EditExercise';
-import AddInfoStripList from '../../General/AddInfoStripList';
 import AddExercise from '../../General/AddExercise';
 import Modal from '../../General/Modal';
+import RoutineFieldSet from '../../General/RoutineFieldSet';
+import DataContext from '../../../../context/DataContext';
+import RoutineFormContext from '../../../../context/RoutineFormContext';
 
 function RoutineForm() {
+  const {headingOptions, setHeadingOptions, 
+    //State for handling title and image
+    handleEditTitleModalToggle, editTitleModalIsOpen, tempTitle, setTempTitle} = useContext(DataContext);
 
-  //The description of the routine
-  const [description, setDescription] = useState("");
+  const {description, difficulty, length, avgDuration, daysAndExercises,
+    setDescription, setDifficulty, setLength, setAvgDuration, exerciseModalIsOpen, handleExerciseModalToggle,
+    exerciseList, exerciseLoading, exerciseError, activeDays} = useContext(RoutineFormContext);
 
-  //Whether the modal is open
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  //The array of exercises loaded from API
-  const [exercises, setExercises] = useState([]);
-
-  //Whether data is loading
-  const [isLoading, setIsLoading] = useState(true);
-
-  //Represents the days on which workouts are scheduled
-  const [activeDays, setActiveDays] = useState( 
-    {
-      "Sunday" : false,
-      "Monday" : false,
-      "Tuesday" : false,
-      "Wednesday" : false,
-      "Thursday" : false,
-      "Friday" : false,
-      "Saturday" : false,
-    }
-  ); 
-
-  //Maps a day to an array of exercises
-  const [daysAndExercises, setDaysAndExercises] = useState({
-      "Sunday" : [],
-      "Monday" : [],
-      "Tuesday" : [],
-      "Wednesday" : [],
-      "Thursday" : [],
-      "Friday" : [],
-      "Saturday" : [],
-    }
-  );
-
-  //The current day that is being edited
-  const [currentDay, setCurrentDay] = useState("");
-
-  //Array of exercises that are selected for a given day
-  const [selectedExercises, setSelectedExercises] = useState([]);
-
-
-  /**
-   * Load list of exercises (for now, getting from kind of junky but free API)
-   */
-  useEffect(()=>{
-      async function fetchWorkouts()
-      {
-        try
-        {
-          const response = await fetch("https://wger.de/api/v2/exercise/?language=2&limit=231")   
-          const data = await response.json();
-          const {results} = data;
-          setExercises(results);
-          setIsLoading(false);
-
-        }
-        catch(err)
-        {
-          console.log(err)
-        }
-    }
-    fetchWorkouts();
-  }, []);
-
-  /**
-   * Opens or closes the modal
-   */
-  function handleModalToggle(e, open)
+  async function handleSubmit(e)
   {
     e.preventDefault();
-    //If a current day is selected, open the modal
-    if (currentDay)
+    let routine = 
     {
-      setModalIsOpen(open);
+      imagePath : headingOptions.imgPath,
+      title : headingOptions.title,
+      description : description,
+      length : length,
+      avgDuration : avgDuration,
+      schedule : activeDays,
+      exercises : daysAndExercises
     }
-    else
+    try 
     {
-      alert("You must have a day selected to add exercises.")
-    }
-  }
-
-  /**
-   * Utility function that deep copies the daysAndExercises object 
-   * so that state can be properly updated
-   */
-  function deepCopyDaysAndExercises(prev)
-  {
-    const newObject = {};
-    Object.entries(prev).forEach((entry) =>
-    {
-      newObject[entry[0]] = [...entry[1]];
-    })
-    return newObject;
-  }
-
-  /**
-   * Adds the exercise specified by the id to the array of selected exercises
-   */
-  function handleAddExercise(id)
-  {
-    //Get the exercise from the list
-    const exercise = exercises.find(exercise => exercise.id === id);
-    setDaysAndExercises((prev) =>
-    {
-      //Deep copy previous object
-      const newObject = deepCopyDaysAndExercises(prev);
-
-      newObject[currentDay].push(exercise);
-      return newObject;
-    })
-  }
-
-  /**
-   * Removes the exercise specified by the id from the array of selected exercises
-   */
-  function handleRemoveExercise(id)
-  {
-    setDaysAndExercises((prev) =>
-    {
-      //Deep copy previous object
-      const newObject = deepCopyDaysAndExercises(prev);
-      
-      newObject[currentDay] = newObject[currentDay].filter(
-        (exercise) => 
+      const response = await fetch('http://localhost:4000/routines',
         {
-          return exercise.id !== id
+            method: 'POST',
+            headers:
+            {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(routine)
         });
-      return newObject;
-    })
-  }
-
-  function handleEditOptions(e)
-  {
-    e.preventDefault();
-    alert("Handle edit options")
-  }
-
-  /**
-   * Sets the days on which workouts will be scheduled based on which checkboxes are checked
-   */
-  function handleChecked(day)
-  {
-    if (!activeDays[day])
-    {
-      setActiveDays((prev) =>
-      {
-        let newObject = { ...prev};
-        newObject[day] = true;
-        return newObject;
-      })
-    }
-    else
-    {
-      setActiveDays((prev) =>
-      {
-        let newObject = { ...prev};
-        newObject[day] = false;
-        return newObject;
-      })
+      console.log(response)
 
     }
+    catch(err)
+    {
+      console.log(err)
+    }
   }
-
 
   return (
     <>
       <form className='grid-form'>
-        <fieldset id='description-field'>
-          <legend>Description</legend>
-          <div className='input-container'>
-            <textarea id="edit-description" className="content-box" name="editDescription" cols="30" rows="10" placeholder="Enter description here"
-              onChange={(e)=>{setDescription(e.target.value);}}/>
-          </div>
-        </fieldset>
+        <RoutineFieldSet id='description-field' legend='Description'>
+          <textarea id="edit-description" className="content-box" name="editDescription" cols="30" rows="10" placeholder="Enter description here"
+            value={description}
+            onChange={(e)=>{setDescription(e.target.value);}}/>
+        </RoutineFieldSet>
 
       
-        <fieldset id="edit-details">
-          <legend>Details</legend>
-          <div className='input-container'>
+        <RoutineFieldSet id='edit-details' legend='Details'>
             <div className='input-group'>
               <label className="rating-label">Difficulty</label>
               <input
+                  type="range"
                   className="rating"
                   max="5"
                   step="0.5"
-                  type="range"
+                  value= {difficulty}
+                  onChange = {(e)=> {setDifficulty(e.target.value)}}
               />
             </div>
             <div className='input-group'>
-              {/*<label>Length</label><input type="number" name="length-weeks" id="length-weeks" min="1" max="52" step="1" value="1"/>*/}
+              <label>Length (weeks)</label>
+              <input 
+                type="number" 
+                name="length-weeks" 
+                id="length-weeks" 
+                min="1" 
+                max="52" 
+                step="1" 
+                value={length}
+                onChange={(e)=>{setLength(e.target.value)}}/>
             </div>
             <div className='input-group'>
-              {/*<label>Avg Duration</label> <input type="number" name="duration-minutes" id="duration-minutes" min="1" max="400" step="1" value="60"/>*/}
+              <label>Avg Duration (minutes)</label> 
+              <input 
+                type="number" 
+                name="duration-minutes"
+                id="duration-minutes" 
+                min="1" 
+                max="400" 
+                step="1" 
+                value={avgDuration}
+                onChange={(e)=>{setAvgDuration(e.target.value)}}/>
             </div>
             <div className="input-group vertical">
               <label>Schedule </label>
-              <WeekDayPicker handleChecked = {handleChecked} setActiveDays={setActiveDays}/>
+              <WeekDayPicker />
             </div>
-          </div>
-        </fieldset>
+        </RoutineFieldSet>
 
-        <fieldset id="edit-workout">
-          <legend>Workouts</legend>
-          <EditExercise 
-            activeDays={activeDays} 
-            currentDay={currentDay} 
-            setCurrentDay={setCurrentDay} 
-            daysAndExercises = {daysAndExercises}
-            setDaysAndExercises = {setDaysAndExercises}
-            exercises={currentDay? daysAndExercises[currentDay] : []}
-            handleModalToggle= {handleModalToggle}
-            handleRemoveExercise={handleRemoveExercise}
-            handleEditOptions = {handleEditOptions}
-          /> 
-        </fieldset>
+
+        <RoutineFieldSet id='edit-workout' legend='Workouts'>
+          <EditExercise/> 
+        </RoutineFieldSet>
         <div id="btn-container">
-            <button type="submit" className="btn-dark"><VscSave/> Save</button> 
+            <button 
+              type="submit" 
+              className="btn-dark"
+              onClick={(e)=>{handleSubmit(e)}
+              }><VscSave/> Save</button> 
         </div>
-      <Modal open = {modalIsOpen} handleModalToggle = {handleModalToggle}>
-        {
-          isLoading && <p>Loading data...</p>
-        }
-        {
-          !isLoading &&
-          <AddExercise 
-            exercises ={exercises} 
-            activeExercisesForDay = {currentDay? daysAndExercises[currentDay] : []}
-            handleAddExercise={handleAddExercise} 
-            handleRemoveExercise={handleRemoveExercise}
-            currentDay={currentDay} 
-            daysAndExercises = {daysAndExercises}
-            setDaysAndExercises = {setDaysAndExercises}
-          />
-        }
-      </Modal>
+
+        <Modal id='edit-title-modal' title='Edit Name and Image'
+          open = {editTitleModalIsOpen} 
+          handleModalToggle = {handleEditTitleModalToggle}
+        >
+          <RoutineFieldSet id='title-field'>
+            <button className='btn-image'><img src='/images/placeholder/workout-placeholder.svg' className='circle'/></button>
+            <input 
+              name="name" 
+              id="name" 
+              type='text' 
+              aria-label='Routine Name' 
+              placeholder='Routine Name'
+              value = {tempTitle}
+              onChange = {
+                (e)=>
+                {
+                  setTempTitle(e.target.value)
+                }
+                }
+            />
+            <button 
+              className='btn-dark btn-save'
+              onClick={(e)=>
+                {
+                  e.preventDefault();
+                  handleEditTitleModalToggle(e, false)
+                }}
+            >Save</button>
+          </RoutineFieldSet>
+        </Modal>
       </form>
 
+      <Modal 
+        open = {exerciseModalIsOpen} 
+        handleModalToggle = {handleExerciseModalToggle}
+      >  
+        {
+          exerciseLoading && <p>Loading...</p>
+        }
+        {
+          !exerciseLoading && exerciseError &&
+          <p>An error occurred.</p>
+        }
+        {
+          !exerciseLoading  && !exerciseError && exerciseList.length > 0 &&        
+          <AddExercise />
+        }
+      </Modal>
     </>
   )
 }

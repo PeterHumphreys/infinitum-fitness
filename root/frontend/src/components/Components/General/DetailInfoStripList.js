@@ -1,18 +1,19 @@
 import DetailInfoStrip from './DetailInfoStrip';
-import {useState, useRef} from 'react';
+import { useContext } from 'react';
+import RoutineFormContext from '../../../context/RoutineFormContext';
 
-
-function DetailInfoStripList({exercises, handleRemoveExercise, handleEditOptions}) {
+function DetailInfoStripList() {
+  const {currentDay, daysAndExercises} = useContext(RoutineFormContext)
+  const scheduledExercises= currentDay? daysAndExercises[currentDay] : []
+  
   return (
     <div id="edit-exercise-list" className='info-strip-list' >
       {
-        exercises.map((item) =>
+        scheduledExercises.map((item) =>
         {
           return <DetailInfoStrip 
             key={item.uuid} 
-            exercise = {item}
-            handleRemoveExercise={handleRemoveExercise}
-            handleEditOptions = {handleEditOptions}
+            scheduledExercise = {item}
             />
         } )}
     </div>

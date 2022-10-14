@@ -1,47 +1,70 @@
 import {useState, useEffect} from 'react';
-import {MdOutlineExpandMore} from 'react-icons/md';
-import {FaMinusSquare, FaPlusSquare} from 'react-icons/fa';
+import {AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai';
+import { useContext } from 'react';
+import RoutineFormContext from '../../../context/RoutineFormContext';
 
-
-function AddInfoStrip({activeExercisesForDay, currentDay, content, handleAddExercise, handleRemoveExercise,  setHighlightedExercise, isCurrent}) {
+function AddInfoStrip({exercise, setHighlightedExercise, isCurrent}) {
+  const {currentDay, tempExercises, handleAddExercise, handleRemoveExercise} = useContext(RoutineFormContext);
   const [active, setActive] = useState(false);
-  const [expanded, setExpanded] = useState(false);
 
   //Whenever the currentDay is switched OR the list of activeExercisesForDay changes, 
   //check if this exercise is included in currentDay's list of exercises 
   //and set active state to true if it is and false otherwise
   useEffect(() => {
     let isActive = false;
-    activeExercisesForDay.forEach((exercise) =>
+    tempExercises.forEach((scheduledExercise) =>
     {
-      if (exercise.id === content.id)
+      if (scheduledExercise.exercise.id === exercise.id)
       {
         isActive = true;
         return;
       }
     })
     setActive(isActive);
-  }, [currentDay, activeExercisesForDay])
+  }, [currentDay, tempExercises])
 
 
   return (
     <div className={`info-strip add-info-strip ${active ? 'selected' : ''} ${isCurrent ? 'current-exercise' : ''}`}
-      onClick={()=>{ setHighlightedExercise(content)}}>
-      
-      <img src="/images/exercises/jacked-dude-squatting.jpg" alt= "Person doing things" className="circle"/>
-      <h4>{content.name}</h4>
-      {
-        !active ? <FaPlusSquare onClick={(e) => 
+      onClick={()=>{ setHighlightedExercise(exercise)}}>
+      <div className='info-strip-wrapper'>
+        <img src={exercise.image.image_url} alt= {exercise.image.image_alt_text} className="circle"/>
+        <h4>{exercise.name}</h4>
+      </div>
+      <button className='icon-right btn-icon'>
         {
-          setActive(true)
-          handleAddExercise(content.id);
+          !active ? <AiOutlinePlus
+            onClick={(e) => 
+            {
+              e.preventDefault();
+              setActive(true)
+              handleAddExercise(exercise.id);
+              }
+            }/> : 
+            <AiOutlineMinus
+              onClick={(e) => 
+              {
+                
+                e.preventDefault();
+                setActive(false)
+                //Get the uuid of the scheduled exercise
+                let uuidToDelete = null;
+                tempExercises.forEach(
+                  (activeExercise)=>
+                  {
+                    if (activeExercise.exercise.id === exercise.id)
+                    {
+                      uuidToDelete = activeExercise.uuid;
+                    }
+                  })
+                  //Should never be null, at this point, but just make sure before removing
+                  if (uuidToDelete)
+                  {
+                    handleRemoveExercise(uuidToDelete);
+                  }
+                }}/>
           }
-        }/> : <FaMinusSquare onClick={(e) => 
-          {
-            setActive(false)
-            handleRemoveExercise(content.id);
-            }}/>
-      }
+        </button>
     </div>
   )
 }

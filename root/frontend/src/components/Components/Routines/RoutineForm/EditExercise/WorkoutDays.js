@@ -1,6 +1,9 @@
 import {useEffect} from 'react';
+import { useContext } from 'react';
+import RoutineFormContext from '../../../../../context/RoutineFormContext';
 
-function WorkoutDays({activeDays, currentDay, setCurrentDay}) {
+function WorkoutDays() {
+  const {activeDays, currentDay, setCurrentDay} = useContext(RoutineFormContext)
   
   /**
    * Used to handle edge cases when changing the current day does not 

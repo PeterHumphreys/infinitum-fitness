@@ -27,13 +27,14 @@
     opacity:0;
     .modal-content
     {    
-        padding:0 30px 30px 30px;
-        height:calc(100vh - 60px);
+        padding:30px;
+        max-height:calc(100vh - 60px);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         background: $color_secondary_mostly_filled;
+
         .modal-header
         {
             padding-bottom:10px;
@@ -58,6 +59,7 @@
         {
             display: flex;
             max-height:calc(100% - 50px);
+            overflow:auto;
         }
     }
 
