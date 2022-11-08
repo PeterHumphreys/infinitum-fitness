@@ -57,10 +57,11 @@ export function DataProvider({children})
   let location = useLocation();
 
   //Get user data
-  const {data : userData, loading : userLoading, error : userError } = useFetch("http://localhost:4000/users/users-by-id/2");
+  //For now, we are just using a test user
+  const {data : userData, loading : userLoading, error : userError } = useFetch("users/users-by-id/2");
 
   //Get routine data
-  const {data : routineData, loading : routineLoading, error : routineError } = useFetch("http://localhost:4000/routines");
+  const {data : routineData, loading : routineLoading, error : routineError } = useFetch("routines");
 
 
   
@@ -128,6 +129,11 @@ export function DataProvider({children})
         options.title = 'New Workout Routine';
         options.icon = <button className='btn-icon' onClick={(e) => {handleEditTitleModalToggle(e, true)}}><FiEdit/></button>
       }
+      else if (pathName === '/user-profile')
+      {
+        options.altText = `${user.user_first_name} ${user.user_last_name}`;
+        options.title = `${user.user_first_name} ${user.user_last_name}`;
+      }
       setHeadingOptions(options);
   }
 
@@ -137,7 +143,7 @@ export function DataProvider({children})
     <DataContext.Provider value={{
       routines, routineLoading, routineError,
       headingOptions, accountBoxData,
-      editTitleModalIsOpen, handleEditTitleModalToggle, setHeadingOptions, tempTitle, setTempTitle
+      editTitleModalIsOpen, handleEditTitleModalToggle, setHeadingOptions, tempTitle, setTempTitle, user, userLoading, userError
     }}>
       {children}
     </DataContext.Provider>
