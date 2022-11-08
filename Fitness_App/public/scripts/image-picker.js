@@ -1,59 +1,82 @@
+/**
+ * Controls a custom reusable image picker.  Allows a user to select from several
+ * default images or upload their own to the server.
+ * 
+ * Note that an image upload is not actually uploaded to the server until
+ * the "submit" event has finished.  Between the user interacting with the file picker
+ * and submission, it is stored in a temporary blob file on the browser. 
+ */
 
-
-
-//Gallery
+//Set the image being displayed to the currently selected image
 window.addEventListener("load", ()=>
 {
     mainImage.src = currImage.src;
-    
 })
 
-const IMG_GAP_TOTAL_WIDTH = 62.5;
 let prevArrow = document.querySelector("#prev-arrow")
 let nextArrow = document.querySelector("#next-arrow")
 let imageGallery = document.querySelector(".image-gallery");
-
 let imageLinks = document.querySelectorAll(".image-gallery a");
 let imagePaths = document.querySelectorAll(".image-gallery img");
-
 let currImageLink = document.querySelector(".image-gallery a.selected-link");
 let currImage = document.querySelector(".image-gallery a.selected-link img");
-
 let mainImage = document.querySelector(".current-selected-image");
 
+//Images are 50px wide + 12px gap set on flexbox container = 62.5px
+const IMG_GAP_TOTAL_WIDTH = 62.5;
+
+//Constants to ensure valid image is uploaded
 const MAX_FILE_SIZE = 1000000;
 const VALID_FILE_TYPES = /jpeg|jpg|png|gif/;
 
+//Number of images in the gallery
 let numImages = imagePaths.length;
-let xLoc = 0; //value of image Gallery translateX property
-let currIndex = 0;//furthest image to left that is visible
 
+//value of image Gallery translateX property
+let xLoc = 0; 
+
+//furthest VISIBLE image to left
+let currIndex = 0;
+
+//Reveal more images at the beginning of the gallery
 prevArrow.addEventListener("click", ()=>
 {
+    //Make sure we don't go out of bounds
     if (currIndex > 0)
     {
+        //Move the image gallery to the right (reveals images to the left)
         move(IMG_GAP_TOTAL_WIDTH);
+        //Decrement the current index
         currIndex--;
-        console.log(currIndex)
     }
 });
 
+//Reveal more images at the end of the gallery
 nextArrow.addEventListener("click", ()=>
 {
+    //Make sure we don't go out of bounds
     if (currIndex < numImages)
     {
+        //Move the image gallery to the left (reveals images to the right)
         move(-IMG_GAP_TOTAL_WIDTH);
+        //Increment the current index
         currIndex++;
-        console.log(currIndex)
     }
 });
 
+/**
+ * Utility function to manipulate the horizontal position of the imageGallery
+ * by a specified amount
+ * @param {Number} delta the pixel amount we wish to move the element
+ * @return none
+ */
 let move = (delta) =>
 {
     imageGallery.setAttribute("style", `transform: translateX(${xLoc + delta}px)`);
     xLoc += delta;
 }
 
+//Set the active image
 imageLinks.forEach((element) => 
 {
     element.addEventListener("click", () =>
@@ -62,28 +85,49 @@ imageLinks.forEach((element) =>
     })
 });
 
+/**
+ * Sets the relevant attributes for whatever image is currently active
+ * and removes them from previous active image
+ * @param {*} element the element we wish to manipulate
+ * @return none
+ */
 function handleCurrentSelection(element)
 {
+    //Only need to run this code if this is not the currently active image
     if (!element.classList.contains("selected-link"))
     {
+        //Add selected class to active image
         element.classList.toggle("selected-link")
+
+        //Remove the active status from the previously active image
         currImageLink.classList.toggle("selected-link")
+
+        //Set the currImageLink and currImage to the new active image
         currImageLink = element;
         currImage = currImageLink.querySelector("img");
+
         //if this is user uploaded image, append class to currImage
         if (currImageLink.classList.contains("user-upload"))
         {
             currImage.classList.add("user-upload")
         }
+
+        //Set the main image
         mainImage.src = currImage.src;
     }
 }
 
+/**
+ * Builds an image-gallery item component consisting of a link, overlay div and img
+ * @param {string} src the source path for the image
+ * @return none
+ */
 function buildImageGalleryItem(src)
 {
-
+    //Create the image element
     let newImage = document.createElement("img");
     
+    //Set the source path
     newImage.src = src;
 
     //create <a> tag
@@ -95,7 +139,7 @@ function buildImageGalleryItem(src)
     let divOverlay = document.createElement("div");
     divOverlay.classList.add("overlay", "circle");
 
-    //append img to div.overlay
+    //append img to div.overlay and handle its active status
     divOverlay.appendChild(newImage);
     imgLink.addEventListener("click", () => 
     {
@@ -119,10 +163,9 @@ function buildImageGalleryItem(src)
 
     //increment number of images
     numImages++;
-
 }
 
-//File upload
+//Handle File upload
 let btnFile = document.querySelector(".btn-file");
 let fileUpload = document.querySelector("input[type=file]");
 btnFile.addEventListener("click", (e)=>
@@ -131,6 +174,7 @@ btnFile.addEventListener("click", (e)=>
     fileUpload.click();
 });
 
+//Handle image temp upload to browser
 fileUpload.addEventListener("change", (e)=>
 {
     //Get file
@@ -153,6 +197,7 @@ fileUpload.addEventListener("change", (e)=>
     //Should be good
     else
     {
+        //Display name of the file
         message.innerHTML = file.name;
 
         //remove previous temp user upload if exists
@@ -160,22 +205,24 @@ fileUpload.addEventListener("change", (e)=>
         if (prevImageLink != null)
             imageGallery.removeChild(prevImageLink);
     
-        //create new image using temp URL
+        //create new image gallery item using temp URL
         let src = URL.createObjectURL(file);
         buildImageGalleryItem(src);
     }
 });
 
-//Handle Submission
+//Handle image picker submission.  
 const imagePickerForm = document.querySelector("#image-picker-form");
 const submitBtn = document.querySelector("#image-picker-submit-btn");
 const imgLabel = document.querySelector(".file-name")
 const message = document.querySelector(".form-message");
 
+//Note that an image is not uploaded to the server until this event listener finishes  
 imagePickerForm.addEventListener("submit", async function (event)
 {
     event.preventDefault();
-    //Upload image 
+
+    //Upload image to server if one has been supplied
     if (currImage.classList.contains("user-upload"))
     {
         const formData = new FormData(imagePickerForm);
@@ -187,10 +234,8 @@ imagePickerForm.addEventListener("submit", async function (event)
                 body: formData
             }
             const response = await fetch('http://localhost:5000/upload/image-upload', data);
-
-            //message.innerHTML = "Succesfully uploaded image"
-
             let jsonResponse = await response.json();
+
             //Image was succesfully uploaded
             if (response.ok)
             {        
@@ -204,8 +249,8 @@ imagePickerForm.addEventListener("submit", async function (event)
                 const {msg} = jsonResponse;
                 throw new Error(msg);
             }
-
         }
+
         //Error occurred
         catch(error)
         {
@@ -221,6 +266,11 @@ imagePickerForm.addEventListener("submit", async function (event)
 
 }); 
 
+/**
+ * Updates the user profile photo URL
+ * @param {string} pathName the relative path to the image
+ * @return none
+ */
 async function updateImage(pathName)
 {
     //Convert formData to JSON
@@ -232,6 +282,7 @@ async function updateImage(pathName)
     //Attempt to POST JSON data to server
     try
     {
+        //Attempt to post data
         const response = await fetch('http://localhost:5000/api/update-user-profile-picture',
         {
             method: 'POST',
@@ -241,6 +292,8 @@ async function updateImage(pathName)
             },
             body: data
         });
+
+        //Redirect to url provided by server
         location.href = response.url;
     }
     //Error occurred

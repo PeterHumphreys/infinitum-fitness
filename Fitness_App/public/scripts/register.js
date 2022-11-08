@@ -1,3 +1,9 @@
+/**
+ * Submits the registration form to the server
+ * Upon submission, control is passed to the image-picker script
+ * to submit the user profile photo data to the server before redirecting to home page.
+ */
+
 let registerForm = document.querySelector("#form-register");
 let btn = document.querySelector("#btn-sign-up");
 
@@ -49,7 +55,7 @@ registerForm.addEventListener("submit", async function (event)
             registerForm.disabled = true;
             registerForm.remove();
 
-            //open optional section
+            //open optional section (as of now, just the step of setting user profile photo)
             let stepOptional = document.querySelector(".step-optional");
             stepOptional.classList.add("step-active");
         }

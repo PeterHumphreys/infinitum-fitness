@@ -1,16 +1,22 @@
+/**
+ * Submits user login information to the server and redirects to 
+ * URL provided in the response if authorized.
+ */
+
 let form = document.querySelector("#form-login");
 let btn = document.querySelector("#btn-login");
 
 //Form submission event
 form.addEventListener("submit", async function (event)
 {
+    //Prevent page from reloading on submit
     event.preventDefault();
+
     //Create new formData object with key value pairs corresponding to form input
     const formData = new FormData();
     formData.append(this[0].name, this[0].value);           //Email
     formData.append(this[1].name, this[1].value);           //Password
     
-
     //Convert formData to JSON
     let data = {};
     formData.forEach((value, key) => (data[key] = value));
@@ -53,7 +59,7 @@ form.addEventListener("submit", async function (event)
             }
         }
     }
-    //Error occurred
+    //Server error occurred
     catch(error)
     {
         console.log(error);

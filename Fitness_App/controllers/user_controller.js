@@ -1,6 +1,7 @@
-/*const { getUserByEmail } = require("../models/user");*/
 const User = require("../models/user");
-const BS = '\\\\';
+//Escape "\" once while using the mysql2 package, escape a second time 
+//to actually insert in database.
+const BS = '\\\\';                          
 
 /**
  * Save a new user object in the database
@@ -10,7 +11,8 @@ exports.saveEntry = async(req, res, next) =>
     try
     {
         //Destructure the request body and get values
-        let {user_first_name, user_last_name, user_email, user_password, user_dob, user_sex, user_height, user_activity_level, user_fitness_goal, historical_date} = req.body;
+        let {user_first_name, user_last_name, user_email, user_password, user_dob, user_sex, user_height, 
+            user_activity_level, user_fitness_goal, historical_date} = req.body;
         
         //Initialize user photo to null- this value will be set after the user is created
         let user_profile_photo_URL = null;
@@ -55,7 +57,8 @@ exports.saveEntry = async(req, res, next) =>
  {
     //append escape slashes to path
     let path = req.body.path;
-    //path = "\\" + path;
+    
+    // "//path" becomes "\\" + "path";
     path = path.replace(/\\/g, `\\\\`);
 
     try
@@ -219,19 +222,6 @@ exports.verifySession = async(req, res, next) =>
  */
 function setUserSession(user, req)
 {
-    /*let theUser = new User.UserBuilder()
-        .setUserProfilePhotoURL(user.user_profile_photo_URL)
-        .setUserFirstName(user.user_first_name)
-        .setUserLastName(user.user_last_name)
-        .setUserEmail(user.user_email)
-        .setUserPassword(user.user_password)
-        .setUserDOB(user.user_dob)
-        .setUserSex(user.user_sex)
-        .setUserHeight(user.user_height)
-        .setUserActivityLevel(user.user_activity_level)
-        .setUserFitnessGoal(user.user_fitness_goal)
-        .build();
-    req.session.user = theUser;*/
     req.session.user = user;
     req.session.isAuth = true;
     console.log( `${user.user_first_name} ${user.user_last_name} logged in and was assigned session ID: ${req.session.id}`);

@@ -1,8 +1,14 @@
 import {CustomChart} from './custom-chart.js';
 
+/**
+ * Handles the form that controls what data to graph in a CustomChart object
+ */
+
+//URL values
 const SERVER_URL = 'http://localhost:5000/api/';
 const DAILY_WEIGHTS_PATH = 'weights-daily-by-dates-entry';
 
+//Default values for min/max y and beginning/end dates 
 const DEFAULT_MINY = 170;
 const DEFAULT_MAXY = 190;
 const TEST_DATE1 = "2021-06-15";
@@ -43,7 +49,7 @@ window.addEventListener('load', async (url) =>
 
 /**
  * Gets data all user entries from the database for the chart
- * @returns 
+ * @return 
  */
  async function fetchData(path, startDate, endDate)
  {

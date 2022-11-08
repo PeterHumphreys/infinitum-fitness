@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-//TODO: Add in error and info
+/**
+ * Central Hub for all routes in the app
+ */
+
 router.use("/", require("./home"));
 router.use("/auth", require("./auth"))
 router.use("/api", require("./api"))

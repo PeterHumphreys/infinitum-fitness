@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const userHistoryController = require("../controllers/user-history_entry_controller")
 const userController = require("../controllers/user_controller")
 
 /**
@@ -12,6 +11,7 @@ const userController = require("../controllers/user_controller")
 //Home page
 router.get("/", userController.verifySession, function(req, res)
 {
+    //Dynamically change the greeting based on the time of day
     let timeNow = new Date().getHours(), greetingString;
     if (timeNow >= 0 && timeNow < 12)
         greetingString = "Morning";
@@ -19,6 +19,8 @@ router.get("/", userController.verifySession, function(req, res)
         greetingString = "Afternoon";
     else    
         greetingString = "Evening";
+        
+    //Render the page
     res.render("home/", {user: req.session.user, heading: `Good ${greetingString}, ${req.session.user.user_first_name}!`});
 
 });
@@ -103,18 +105,5 @@ router.use((err, req, res, next) =>
     console.error(err.stack);
     res.status(500).send("something broke!")
 })
-
-// --- Testing ---------------------------------------------------------------
-//Test page
-router.get("/test-index", function(req, res)
-{
-    res.render("home/test-index", {heading: "Test Page"});
-});
-
-//testing db
-router.post("/test", userController.getLastInsertID, (req, res, next) => 
-{
-    res.redirect("/");
-});
 
 module.exports = router;

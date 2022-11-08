@@ -3,20 +3,16 @@ const router = express.Router();
 const userController = require("../controllers/user_controller");
 const userHistoryController = require("../controllers/user-history_entry_controller");
 
-/**
- * This file contains routes for CRUD data operations.  I wasn't really sure what to name it,
- * so henceforth it is dubbed "api".
- */
-
 // --- User Create ----------------------------------------
 //Register a user
-router.post("/register", userController.saveEntry, userController.getLastInsertID, userHistoryController.saveEntry, (req, res, next) => 
+router.post("/register", userController.saveEntry, /*userController.getLastInsertID,*/ userHistoryController.saveEntry, (req, res, next) => 
 {
     console.log("Created user")
+
     //registration succeeded
     res.sendStatus(200);
 
-    //registration failed
+    //TODO:registration failed
 });
 
 
@@ -30,20 +26,29 @@ router.route("/users-by-id/:id").get(userController.getUserByID);
 //Get 1 user by their email
 router.route("/users-by-email/:email").get(userController.getUserByEmail);
 
-
-
 // --- User Update ----------------------------------------
 router.route("/update-user-profile-picture").post(userController.updateUserProfilePhoto,  (req, res, next) =>
 {
-    let protocol = req.protocol;
-    let host = req.headers.host;
-    let path = req.headers.referer;
-    path = path.replace(protocol, "")
-    path = path.replace(host, "")
-    path = path.replace("://", "")
+    //Strip the full URL down to just the relative path
+
+    //Get individual components of the path of the URL
+    let protocol = req.protocol;          //i.e. http
+    let host = req.headers.host;            //i.e. localhost:5000
+    let path = req.headers.referer;         //i.e. http://localhost:5000/user-profile
+    
+    //Replace the following with empty strings
+    path = path.replace(protocol, "");
+    path = path.replace(host, "");
+    path = path.replace("://", "");
+
+    //Should now have just the path, i.e. /user-profile
     console.log(path);
+
+    //If the request came from the signup page, redirect to the home page
     if (path === "/signup")
         res.redirect("/");
+
+    //Otherwise, redirect to the page the request came from
     else   
         res.redirect(path)
 });
@@ -55,7 +60,6 @@ router.route("/update-user-profile-picture").post(userController.updateUserProfi
 // --- User History Create ----------------------------------------
 //Add user history entry
 router.route("/entries").post(userHistoryController.saveEntry)
-
 
 // --- User History Read  ----------------------------------------
 //Get all entries

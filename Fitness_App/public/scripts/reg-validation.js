@@ -1,5 +1,11 @@
+/**
+ * Handles all validation for the user registration form
+ */
+
+
 //Step divs
 const steps = document.querySelectorAll(".step");
+
 //Initialize current step to 0
 let currentStep = 0;
 
@@ -24,9 +30,9 @@ const bfpEl = document.querySelector("#bfp");
 const activityLevelEl = document.querySelector("#activity-level");
 const fitnessGoalEl = document.querySelector("#fitness-goal");
 
+//Constant in case more steps are added into the registration process
 const LAST_STEP = 2;
 
-/**Event Handlers */
 //Previous button
 prevBtn.addEventListener("click", (e)=>
 {
@@ -45,8 +51,6 @@ prevBtn.addEventListener("click", (e)=>
             //Hide/disable previous button
             prevBtn.classList.toggle("btn-hidden")
             prevBtn.disabled = true;
-
-
         }
 
         //Step N-1
@@ -96,13 +100,15 @@ nextBtn.addEventListener("click", async (e)=>
 
 });
 
-//Show password
+//Show password checkbox 
 showPasswordEl.addEventListener("change", () =>
-{
+{   
+    //Show password as text
     if (passwordEl.type === "password")
     {
         passwordEl.type = "text"
     }
+    //Hide password
     else
     {
         passwordEl.type = "password";
@@ -114,15 +120,17 @@ showPasswordEl.addEventListener("change", () =>
 //Checks that all input fields on a given step are validated
 async function isValidStep(step)
 {
+    //Validate step 0
     if (step === 0)
     {
         let validFirstName = checkFirstName(),
         validLastName = checkLastName(),
-        validEmail = await checkEmail(),
+        validEmail = await checkEmail(), //async because we have to make an API request to server
         validPassword = checkPassword();
 
         return (validFirstName && validLastName && validEmail && validPassword);
     }
+    //Validate step 1
     else if (step === 1)
     {
         let validDOB = checkDOB();
@@ -132,6 +140,7 @@ async function isValidStep(step)
         let validBFP = checkBFP();
         return (validDOB && validSex && validHeight && validWeight && validBFP);
     }
+    //Validate step 2
     else
     {
         let validActivityLevel = checkActivityLevel();
@@ -194,17 +203,19 @@ function checkLastName()
 async function checkEmail()
 {
     let valid = false;
-    //check if last name is blank
+
+    //check if email is blank
     if(emailEl.value === "")
     {
         showError(emailEl, "Email cannot be blank");
     }
+
     else
     {
-        console.log(emailEl.value);
+        //Attempt to fetch the provided email from the server if it exists
         let dbEmail = await fetch(`/api/users-by-email/${emailEl.value}`);
-        console.log(dbEmail);
         let response = await dbEmail.json();
+
         //Email is already registered
         if (response !== null)
         {
@@ -216,9 +227,7 @@ async function checkEmail()
             valid = true
             hideError(emailEl);
         }
-
     }
-
     return valid;
 }
 
@@ -243,6 +252,7 @@ function checkPassword()
 function checkDOB()
 {
     let valid = false;
+    //Check if DOB is blank
     if(!dobEl.value)
     {
         showError(dobEl, "Date of Birth cannot be blank");
@@ -281,7 +291,9 @@ function checkHeight()
     {
         showError(heightParentEl, "Height cannot be blank");
     }
-    else if (heightInEl.value === "" || heightFtEl.value === "" || heightFtEl.value < 0 || heightFtEl.value > 8 || heightInEl.value < 0 || heightInEl.value >= 12)
+    //check that height is a Number and within valid range [0'0" - 8'11")
+    else if (heightInEl.value === "" || heightFtEl.value === "" || heightFtEl.value < 0 
+        || heightFtEl.value > 8 || heightInEl.value < 0 || heightInEl.value >= 12)
     {
         showError(heightParentEl, "Enter a valid height");
     }
@@ -302,6 +314,7 @@ function checkWeight()
     {
         showError(weightEl, "Weight cannot be blank");
     }
+    //Check that the weight is within a valid range (0 - 600 lbs)
     else if (weightEl.value < 0 || weightEl.value > 600)
     {
         showError(weightEl, "Enter a valid number");
@@ -323,6 +336,7 @@ function checkBFP()
     {
         showError(bfpEl, "Body fat percentage cannot be blank");
     }
+    //Check that bfp is within valid range [0 - 100%]
     else if (bfpEl.value < 0 || bfpEl.value > 100)
     {
         showError(bfpEl, "Enter a valid number");
