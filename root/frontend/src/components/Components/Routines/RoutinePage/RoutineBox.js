@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 function RoutineBox({routine}) {
   return (        
     <div className="image-box">
-        <Link to={`/routines/${routine.id}`}>
+        <Link to="#"/*to={`/routines/${routine.id}`}*/>
             <img src={routine.imagePath} alt={routine.name}/>
             <div className = "overlay-text-container">
                 <div className="heading-subcontainer">
