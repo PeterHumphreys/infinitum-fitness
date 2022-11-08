@@ -32,7 +32,7 @@ function RoutineForm() {
     }
     try 
     {
-      const response = await fetch('http://localhost:4000/routines',
+      const response = await fetch('routines',
         {
             method: 'POST',
             headers:

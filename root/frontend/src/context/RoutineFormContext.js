@@ -6,7 +6,6 @@ const RoutineFormContext = createContext({});
 
 export function RoutineFormProvider({children})
 {
-  
   //The description of the routine
   const [description, setDescription] = useState("");
 
@@ -48,7 +47,6 @@ export function RoutineFormProvider({children})
       "Saturday" : false,
     }
   ); 
-
   
   /**
    * Opens or closes the AddExercise modal
@@ -201,7 +199,7 @@ export function RoutineFormProvider({children})
   const [exerciseModalIsOpen, setExerciseModalIsOpen] = useState(false);
 
   //Get exercise data
-  const {data : exerciseData, loading : exerciseLoading, error : exerciseError } = useFetch("http://localhost:4000/exercises");
+  const {data : exerciseData, loading : exerciseLoading, error : exerciseError } = useFetch("exercises");
   
   //Exercises
   const [exerciseList, setExerciseList] = useState([]);
