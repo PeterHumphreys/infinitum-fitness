@@ -5,19 +5,19 @@
       "id" : "0",
       "linkPath" : "#",
       "imgPath" : "/images/home/store/whey.jpg",
-      "title" : "Wayne's Whey"
+      "title" : "Ultra Star Whey"
     },
     {
       "id" : "1",
       "linkPath" : "#",
       "imgPath" : "/images/home/store/casein.jpg",
-      "title" : "Casey's Casein"
+      "title" : "Optimus Nutrition Casein"
     },
     {
       "id" : "2",
       "linkPath" : "#",
       "imgPath" : "/images/home/store/fish-oil.jpg",
-      "title" : "Freddie's Fish Oil"
+      "title" : "VitaMAX Fish Oil"
     }
   ]
 }

@@ -1,4 +1,4 @@
-import {createContext, useState, useEffect} from 'react';
+import {createContext, useState} from 'react';
 
 const LayoutContext = createContext({});
 
@@ -12,7 +12,6 @@ export function LayoutProvider({children})
   {
     setIsNavExpanded(!isNavExpanded)
   }
-
 
   return (
     <LayoutContext.Provider value={{

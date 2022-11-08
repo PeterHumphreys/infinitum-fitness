@@ -7,7 +7,7 @@ function AddExercise() {
 
   const {exerciseList, handleExerciseModalToggle} = useContext(RoutineFormContext);
 
-  //The exercise whose details are currently being view.  Does not necessarily
+  //The exercise whose details are currently being viewed.  Does not necessarily
   //represent a currently active exercise
   const [highlightedExercise, setHighlightedExercise] = useState(exerciseList[0]);
   

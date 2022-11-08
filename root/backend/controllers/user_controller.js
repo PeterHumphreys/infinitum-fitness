@@ -104,6 +104,7 @@ exports.getAllUsers = async(req, res, next) =>
     console.log("in User Controller")
     try
     {
+        console.log("in User Controller")
         const users = await User.getAllUsers();
         res.status(200).json(users);
     }

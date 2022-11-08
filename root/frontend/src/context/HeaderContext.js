@@ -1,4 +1,4 @@
-import {createContext, useState, useEffect} from 'react';
+import {createContext} from 'react';
 const HeaderContext = createContext({});
 
 export function HeaderProvider({children})

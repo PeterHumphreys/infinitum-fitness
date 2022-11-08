@@ -13,7 +13,6 @@ function ExerciseDetails({highlightedExercise}) {
           <li>Primary Muscles Targeted: </li>
           <li>Secondary Muscles Targeted: </li>
           <li>Equipment: </li>
-          <li>Equipment: </li>
         </ul>
       </div>
     </div>
