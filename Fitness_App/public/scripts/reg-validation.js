@@ -2,7 +2,6 @@
  * Handles all validation for the user registration form
  */
 
-
 //Step divs
 const steps = document.querySelectorAll(".step");
 

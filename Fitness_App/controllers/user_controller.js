@@ -137,16 +137,14 @@ exports.getAllUsers = async(req, res, next) =>
  }
 
  /**
-  * Get 1 user by ID
+  * Get 1 user by email
   */
  exports.getUserByEmail = async(req, res, next) =>
  {
      try
      {
-        console.log("in getUsersByEmail\nemail: " + req.params.email)
         let email = req.params.email;
         const user = await User.getUserByEmail(email);
-        console.log("user: " + user)
         res.status(200).json(user);
      }
      catch(ex)
@@ -161,6 +159,7 @@ exports.getAllUsers = async(req, res, next) =>
  */
 exports.authenticateUser = async(req, res, next) =>
 {
+    //Destructure request body to obtain email and password
     let {user_email, user_password} = req.body;
     try
     {
@@ -205,10 +204,12 @@ exports.authenticateUser = async(req, res, next) =>
  */
 exports.verifySession = async(req, res, next) =>
 {
+    //If the session is authorized, run the next middleware function
     if (req.session.isAuth)
     {
         next();
     }
+    //If session is not authorized, redirect to login
     else
     {
         res.redirect("/login");
