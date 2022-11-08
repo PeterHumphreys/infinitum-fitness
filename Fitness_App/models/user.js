@@ -3,9 +3,10 @@ const db = require("../config/db");
 
 class User
 {
-   constructor(user_profile_photo_URL, user_first_name, user_last_name, user_email, user_password, user_dob, user_sex, user_height, user_activity_level, user_fitness_goal, user_date_joined)
+   constructor(user_profile_photo_URL, user_first_name, user_last_name, user_email, user_password, user_dob, user_sex, 
+      user_height, user_activity_level, user_fitness_goal, user_date_joined)
    {
-      this.user_id = null; //
+      this.user_id = null;
       this.user_profile_photo_URL = user_profile_photo_URL;
       this.user_first_name = user_first_name;
       this.user_last_name = user_last_name;

@@ -147,6 +147,7 @@ class User
    static async getAllUsers()
    {
       let sql = `SELECT * FROM USER`;
+      console.log(sql)
       const result = await db.execute(sql);
       return result;
    }
@@ -159,6 +160,7 @@ class User
    {
       let sql = `SELECT * FROM USER WHERE user_id = ${id}`;
       const result = await db.execute(sql);
+      console.log(result [0][0])
       return result [0][0];
    }
 
