@@ -4,8 +4,8 @@ import useFetch from '../../hooks/useFetch';
 
 function Home() {
   
-  const {data : workoutData, loading : workoutLoading, error : workoutError } = useFetch("http://localhost:4000/home/discover-new-workouts");
-  const {data : storeData, loading : storeLoading, error : storeError } = useFetch("http://localhost:4000/home/store-items");
+  const {data : workoutData, loading : workoutLoading, error : workoutError } = useFetch("home/discover-new-workouts");
+  const {data : storeData, loading : storeLoading, error : storeError } = useFetch("home/store-items");
 
   const [featuredWorkouts, setFeaturedWorkouts] = useState([]);
   const [storeItems, setStoreItems] = useState([]);

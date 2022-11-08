@@ -10,6 +10,7 @@ import Settings from './components/Pages/Settings';
 import RoutinePage from './components/Pages/RoutinePage';
 import NewRoutine from './components/Pages/NewRoutine'
 import {Routes, Route} from "react-router-dom";
+import UserProfile from './components/Pages/UserProfile';
 
 function App() {
   
@@ -39,6 +40,9 @@ function App() {
         </Route>
         <Route path='settings'>
           <Route index element={<Settings/>}/>
+        </Route>
+        <Route path='user-profile'>
+          <Route index element={<UserProfile/>}/>
         </Route>
       </Route>
     </Routes>
