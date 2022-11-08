@@ -1,7 +1,9 @@
 import {useState, useEffect} from "react";
+const BASE_URL = "http://localhost:4000/"
 
 function useFetch(url)
 {
+  url = BASE_URL + url;
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
