@@ -1,5 +1,5 @@
 @import './core/config';
-@import './components/boxes';
+@import './general/boxes';
 @import './layout/grid';
 @import './sections/content-container';
 @import './core/typography';
@@ -7,7 +7,7 @@
 @import './layout/header';
 @import './layout/sidebar';
 @import './layout/footer';
-@import './components/buttons';
+@import './general/buttons';
 @import './pages/add-workout-routine';
 @import './pages/user-profile';
 @import './components/Modal.scss';

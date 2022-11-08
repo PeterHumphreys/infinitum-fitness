@@ -1,11 +1,19 @@
 aside.sidebar
 {
     background: $gradient_secondary;
-    padding-top: 30px;
+    padding-top: 30px!important;
 
     h2{
         text-align: center;
         padding-bottom:20px;
+    }
+    .img-strip 
+    {
+      img 
+      {
+        width:50px;
+        max-width: 50px;
+      }
     }
 }
 
