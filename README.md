@@ -100,13 +100,21 @@ The technology stack includes MYSQL, Node.js, Express and React.
 
 #### Adding a new routine
 ![image](https://user-images.githubusercontent.com/83676679/200711625-97dba3b9-461f-423a-9001-e81b8682fb96.png)
+
 <br/>
+
 ![image](https://user-images.githubusercontent.com/83676679/200711759-5c852638-b51b-48ec-a938-bf8388c7b239.png)
+
 <br/>
+
 ![image](https://user-images.githubusercontent.com/83676679/200712205-396a2e21-a7e4-4817-948f-da8f36f09597.png)
+
 <br/>
+
 ![image](https://user-images.githubusercontent.com/83676679/200712445-149cf2cc-810a-4ce0-9ff2-bbfef121b865.png)
+
 <br/>
+
 ![image](https://user-images.githubusercontent.com/83676679/200713169-88508bb1-7e32-46b4-8f5c-015f1dcab4f9.png)
 
 <br/>
@@ -182,8 +190,8 @@ The backend requires the same packages as Fitness_App, minus sass.
 Version 1 (Fitness_App) can be run by navigating to the directory (Fitness_App) and running the command * nodemon app * in the terminal.
 
 Version 2 (root) requires you to use 2 terminals.
-- On the first terminal, navigate to root/backend and run the command * nodemon app *
-- In the second terminal window, navigate to root/frontend and run the command * npm start *
+- On the first terminal, navigate to root/backend and run the command *nodemon app*
+- In the second terminal window, navigate to root/frontend and run the command *npm start*
 
 
 
