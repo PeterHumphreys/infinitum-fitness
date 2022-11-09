@@ -5,6 +5,19 @@ The technology stack includes MYSQL, Node.js, Express and React.
 
 
 ## Working Screenshots
+![image](https://user-images.githubusercontent.com/83676679/200711248-6908ae25-3feb-4c1d-82e3-6a5f22fd3fd3.png)
+![image](https://user-images.githubusercontent.com/83676679/200711550-17541672-381f-4a3a-ae00-1e0779ce9f2a.png)
+![image](https://user-images.githubusercontent.com/83676679/200711625-97dba3b9-461f-423a-9001-e81b8682fb96.png)
+![image](https://user-images.githubusercontent.com/83676679/200711759-5c852638-b51b-48ec-a938-bf8388c7b239.png)
+![image](https://user-images.githubusercontent.com/83676679/200712205-396a2e21-a7e4-4817-948f-da8f36f09597.png)
+![image](https://user-images.githubusercontent.com/83676679/200712445-149cf2cc-810a-4ce0-9ff2-bbfef121b865.png)
+![image](https://user-images.githubusercontent.com/83676679/200713169-88508bb1-7e32-46b4-8f5c-015f1dcab4f9.png)
+
+
+
+
+
+
 
 ## Important Disclaimer
 Please note that as of the writing of this document, this application is still in development.  I am currently in the process of migrating functionality from the original version of the application (which can be found in Fitness_App) to the newer version of the app (found in root).
