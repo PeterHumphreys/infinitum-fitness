@@ -5,48 +5,113 @@ The technology stack includes MYSQL, Node.js, Express and React.
 
 
 ## Working Screenshots
+### Version 1
+#### Logging in
 ![image](https://user-images.githubusercontent.com/83676679/200715057-aabb134d-2abd-499f-91d3-a506a291c6e6.png)
-![image](https://user-images.githubusercontent.com/83676679/200715236-23d85de0-b470-40b7-b800-83f42cd380db.png)
-![image](https://user-images.githubusercontent.com/83676679/200715314-a4a01e7f-c5ae-4f47-973b-94bd1da35245.png)
-![image](https://user-images.githubusercontent.com/83676679/200716914-1676a77e-9b49-438c-bbc8-b6cd2e126fd4.png)
-![image](https://user-images.githubusercontent.com/83676679/200717081-025d6c16-f40c-4987-a603-98a878c20f6c.png)
-![image](https://user-images.githubusercontent.com/83676679/200717174-0ae4e6e8-68dc-4dc2-839f-e2838af83192.png)
-![image](https://user-images.githubusercontent.com/83676679/200717419-5988a46b-66b0-41f8-b027-5b75c23856e2.png)
-![image](https://user-images.githubusercontent.com/83676679/200717591-90c07144-f98f-41e7-85a7-6fb19c043adb.png)
 
-![image](https://user-images.githubusercontent.com/83676679/200718413-aa910009-0f47-4021-8a4d-4ffc19c5b1a4.png)
+<br/>
+<br/>
+<br/>
+
+#### Changing User Profile Photo
+![image](https://user-images.githubusercontent.com/83676679/200715236-23d85de0-b470-40b7-b800-83f42cd380db.png)
+
+<br/>
+
+![image](https://user-images.githubusercontent.com/83676679/200715314-a4a01e7f-c5ae-4f47-973b-94bd1da35245.png)
+
+<br/>
+<br/>
+<br/>
+
+#### Charting our data
+![image](https://user-images.githubusercontent.com/83676679/200716914-1676a77e-9b49-438c-bbc8-b6cd2e126fd4.png)
+
+<br/>
+
+![image](https://user-images.githubusercontent.com/83676679/200717081-025d6c16-f40c-4987-a603-98a878c20f6c.png)
+
+<br/>
+
+![image](https://user-images.githubusercontent.com/83676679/200717174-0ae4e6e8-68dc-4dc2-839f-e2838af83192.png)
+
+<br/>
+
+![image](https://user-images.githubusercontent.com/83676679/200717419-5988a46b-66b0-41f8-b027-5b75c23856e2.png)
+
+<br/>
+<br/>
+<br/>
+
+#### Registering a new account
+
+![image](https://user-images.githubusercontent.com/83676679/200901269-df9ed38e-ad77-4c2d-bd8b-c11bfcf840e8.png)
+
+<br/>
+
+![image](https://user-images.githubusercontent.com/83676679/200899317-733bf048-98e1-43ce-8615-49e1e5891cad.png)
+
+<br/>
+
 ![image](https://user-images.githubusercontent.com/83676679/200718744-012f7c01-d82b-4bf1-8673-7fa20016a3ce.png)
+
+<br/>
+
 ![image](https://user-images.githubusercontent.com/83676679/200718835-0c13c8f7-cf1d-4021-8d0f-76c1a93c5006.png)
 
-![image](https://user-images.githubusercontent.com/83676679/200718904-c4b89124-a27a-4a61-93d0-3c1bd82dd3d5.png)
-![image](https://user-images.githubusercontent.com/83676679/200718846-72d82696-4561-4ad0-8e71-16b9c1f6d69d.png)
+<br/>
 
+![image](https://user-images.githubusercontent.com/83676679/200718904-c4b89124-a27a-4a61-93d0-3c1bd82dd3d5.png)
+
+<br/>
+<br/>
+<br/>
+
+#### Signing in with 2 accounts simultaneously
 ![image](https://user-images.githubusercontent.com/83676679/200719443-ecac78f4-2155-4345-8f96-8abc3d8f0a51.png)
+
+<br/>
+
 ![image](https://user-images.githubusercontent.com/83676679/200720337-64044fd7-ed1f-4dcf-afff-32f81d6f57ef.png)
+
+<br/>
+
 ![image](https://user-images.githubusercontent.com/83676679/200720420-dbbe570c-435c-4f96-9e80-025aae2a6752.png)
 
+<br/>
+<br/>
+<br/>
 
+### Version 2
 
-
-
-
-
-
-
-
+#### Home page
 ![image](https://user-images.githubusercontent.com/83676679/200711248-6908ae25-3feb-4c1d-82e3-6a5f22fd3fd3.png)
+
+<br/>
+<br/>
+<br/>
+
+#### Routines page
 ![image](https://user-images.githubusercontent.com/83676679/200711550-17541672-381f-4a3a-ae00-1e0779ce9f2a.png)
+
+<br/>
+<br/>
+<br/>
+
+#### Adding a new routine
 ![image](https://user-images.githubusercontent.com/83676679/200711625-97dba3b9-461f-423a-9001-e81b8682fb96.png)
+<br/>
 ![image](https://user-images.githubusercontent.com/83676679/200711759-5c852638-b51b-48ec-a938-bf8388c7b239.png)
+<br/>
 ![image](https://user-images.githubusercontent.com/83676679/200712205-396a2e21-a7e4-4817-948f-da8f36f09597.png)
+<br/>
 ![image](https://user-images.githubusercontent.com/83676679/200712445-149cf2cc-810a-4ce0-9ff2-bbfef121b865.png)
+<br/>
 ![image](https://user-images.githubusercontent.com/83676679/200713169-88508bb1-7e32-46b4-8f5c-015f1dcab4f9.png)
 
-
-
-
-
-
+<br/>
+<br/>
+<br/>
 
 ## Important Disclaimer
 Please note that as of the writing of this document, this application is still in development.  I am currently in the process of migrating functionality from the original version of the application (which can be found in Fitness_App) to the newer version of the app (found in root).
