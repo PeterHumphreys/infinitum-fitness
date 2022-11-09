@@ -1,36 +1,83 @@
 # infinitum-fitness
-A toy fitness web application.
+This is a toy fitness application primarily developed for primarily for educational purposes.  
+
+The technology stack includes MYSQL, Node.js, Express and React.
+
+
+## Working Screenshots
+
+## Important Disclaimer
+Please note that as of the writing of this document, this application is still in development.  I am currently in the process of migrating functionality from the original version of the application (which can be found in Fitness_App) to the newer version of the app (found in root).
+
+### Functionality Currently in Version 1 (In Fitness_App, uses server-side rendering)
+- The User may create an account
+- The User may upload images to the server
+- The User may update their profile photo to either one of a series of default images or a custom uploaded image
+- The User may log weight and body fat percentage data for a given day
+- This data is plotted on chart with customizable options for dataset and formatting
+- Multiple users may be logged in concurrently and are assigned different sessions by the server
+- The User may log in or out.  This affects whether or not they may access restricted resources.
+
+### Functionality Currently in Version 2 (In root, uses client-side rendering)
+- There is currently no authentication capability, so a user test account is logged into by default
+- Routing is accomplished client-side via React Router
+- The User may create and modify a workout routine using a number of workouts loaded from the database.
+  This data is stored client-side as a piece of state in React and is structured in accordance with the provided UML diagram.  The data is then sent to the proper API endpoint.  However, the backend functionality to actually store the data has yet to be implemented.
 
 ---
 ## Requirements
-For development, you will need Node.js and MySQL installed.
+For development, you will need to install Node.js and MYSQL.
 
-### Node
-- #### Node installation on Windows
+After initializing MYSQL, please run the *fitness_script.sql* script to initialize the database.
 
-  Just go on [official Node.js website](https://nodejs.org/) and download the installer.
-Also, be sure to have `git` available in your PATH, `npm` might need it (You can find git [here](https://git-scm.com/)).
+### To run version 1 (Fitness_App) 
+In the project root directory, you will need to create a .env file containing the following information: 
 
-- #### Node installation on Ubuntu
+- NODE_ENV=development
+- PORT=5000
+- DB_HOST= localhost
+- DB_USER= *Your MYSQL username*
+- DB_PORT = *Your MYSQL port*
+- DB_NAME = fitness_project
+- DB_PASSWORD= *Your MYSQL password*
 
-  You can install nodejs and npm easily with apt install, just run the following commands.
+You will then need to install the following node packages using npm or whatever tool you prefer:
+-body-parser
+-express
+-express-mysql
+-express-session
+-mysql2
+-path
+-fs
+-multer
+-ejs
+-dotenv
+-connect-livereload
+-nodemon
+-uuid
+-npm-run-all
+-cors
+-parcel-bundler
+-sass
 
-      $ sudo apt install nodejs
-      $ sudo apt install npm
 
-- #### Other Operating Systems
-  You can find more information about the installation on the [official Node.js website](https://nodejs.org/) and the [official NPM website](https://npmjs.org/).
+### To run version 2 (root)
+This directory contains 2 subdirectories- frontend and backend.  Each is a separate project.
+#### frontend
+Install the following node packages in the frontend directory
+-sass
+-uuid
 
-If the installation was successful, you should be able to run the following command.
+#### backend
+The backend requires the same packages as Fitness_App, minus sass.
 
-    $ node --version
-    v8.11.3
+## How to run development versions of app
+Version 1 (Fitness_App) can be run by navigating to the directory (Fitness_App) and running the command * nodemon app * in the terminal.
 
-    $ npm --version
-    6.1.0
+Version 2 (root) requires you to use 2 terminals.
+- On the first terminal, navigate to root/backend and run the command * nodemon app *
+- In the second terminal window, navigate to root/frontend and run the command * npm start *
 
-If you need to update `npm`, you can make it using `npm`! Cool right? After running the following command, just open again the command line and be happy.
 
-    $ npm install npm -g
 
-###
+
