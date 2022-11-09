@@ -42,31 +42,31 @@ In the project root directory, you will need to create a .env file containing th
 - DB_PASSWORD= *Your MYSQL password*
 
 You will then need to install the following node packages using npm or whatever tool you prefer:
--body-parser
--express
--express-mysql
--express-session
--mysql2
--path
--fs
--multer
--ejs
--dotenv
--connect-livereload
--nodemon
--uuid
--npm-run-all
--cors
--parcel-bundler
--sass
+- body-parser
+- express
+- express-mysql
+- express-session
+- mysql2
+- path
+- fs
+- multer
+- ejs
+- dotenv
+- connect-livereload
+- nodemon
+- uuid
+- npm-run-all
+- cors
+- parcel-bundler
+- sass
 
 
 ### To run version 2 (root)
 This directory contains 2 subdirectories- frontend and backend.  Each is a separate project.
 #### frontend
 Install the following node packages in the frontend directory
--sass
--uuid
+- sass
+- uuid
 
 #### backend
 The backend requires the same packages as Fitness_App, minus sass.
