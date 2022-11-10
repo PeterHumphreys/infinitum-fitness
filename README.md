@@ -3,6 +3,51 @@ This is a toy fitness application primarily developed for primarily for educatio
 
 The technology stack includes MYSQL, Node.js, Express and React.
 
+## Functionality Overview
+Please note that as of the writing of this document, this application is still in development.  I am currently in the process of migrating functionality from the original version of the application (which can be found in Fitness_App) to the newer version of the app (found in root).
+
+### Functionality Currently in Version 1 (In Fitness_App, uses server-side rendering)
+- The User may create an account
+- The User may upload images to the server
+- The User may update their profile photo to either one of a series of default images or a custom uploaded image
+- The User may log weight and body fat percentage data for a given day
+- This data is plotted on chart with customizable options for dataset and formatting
+- Multiple users may be logged in concurrently and are assigned different sessions by the server
+- The User may log in or out.  This affects whether or not they may access restricted resources.
+
+### Functionality Currently in Version 2 (In root, uses client-side rendering)
+- There is currently no authentication capability, so a user test account is logged into by default
+- Routing is accomplished client-side via React Router
+- The User may create and modify a workout routine using a number of workouts loaded from the database.
+  This data is stored client-side as a piece of state in React and is structured in accordance with the provided UML diagram.  The data is then sent to the proper API endpoint.  However, the backend functionality to actually store the data has yet to be implemented.
+  
+### Functionality I hope to implement
+Once the existing functionality in version 1 is succesfully migrated to version 2, I would like to eventually implement the following features (most of these are rather unrealistic, but are worth thinking about)
+- Full CRUD Operations on Exercises and Routines
+- Image uploads served from the backend to the frontend
+- Implementation of a routine scheduling system that can be shown via a calendar component
+- Implementation of some sort of algorithmically generated workout/fitness recommendations based on inputs.
+- Ability for users to interact with each other.
+- User notifications given for upcoming workouts and other events
+- Ability to change user settings (i.e. theme, turn off/on notifications, etc.)
+- Implementation of other pages featured on the navigation menu.
+- A more highly abstracted CustomChart class that allows users to plot more types of data with more customizable options.
+
+### Working ERD Diagram
+Below is a working Entity-Relationship Diagram showing the existing database tables.
+
+<br />
+
+![image](https://user-images.githubusercontent.com/83676679/200991226-81344846-ee19-4e9f-836c-37742f9da841.png)
+
+### Working UML Diagram
+This is a working UML diagram strictly of the existing Model classes within the backend MVC implementation.  View and Presenter classes
+are omitted for simplicity.
+
+<br />
+
+![image](https://user-images.githubusercontent.com/83676679/200994346-74835646-4dcb-4085-beaa-44a00996bfe0.png)
+
 
 ## Working Screenshots
 ### Version 1
@@ -96,7 +141,7 @@ The user chooses a default photo as their profile picture.
 
 ![image](https://user-images.githubusercontent.com/83676679/200720337-64044fd7-ed1f-4dcf-afff-32f81d6f57ef.png)
 When a user signs in, they are assigned a session by the server.  This allows mutltiple accounts to be logged in to the app simulataneously.
-Ideally, these sessions will eventually be stored in the databse.
+Ideally, these sessions will eventually be stored in the database.
 
 <br/>
 
@@ -157,24 +202,6 @@ using the fetch API.  However, backend processing of this data has yet to be imp
 <br/>
 <br/>
 <br/>
-
-## Important Disclaimer
-Please note that as of the writing of this document, this application is still in development.  I am currently in the process of migrating functionality from the original version of the application (which can be found in Fitness_App) to the newer version of the app (found in root).
-
-### Functionality Currently in Version 1 (In Fitness_App, uses server-side rendering)
-- The User may create an account
-- The User may upload images to the server
-- The User may update their profile photo to either one of a series of default images or a custom uploaded image
-- The User may log weight and body fat percentage data for a given day
-- This data is plotted on chart with customizable options for dataset and formatting
-- Multiple users may be logged in concurrently and are assigned different sessions by the server
-- The User may log in or out.  This affects whether or not they may access restricted resources.
-
-### Functionality Currently in Version 2 (In root, uses client-side rendering)
-- There is currently no authentication capability, so a user test account is logged into by default
-- Routing is accomplished client-side via React Router
-- The User may create and modify a workout routine using a number of workouts loaded from the database.
-  This data is stored client-side as a piece of state in React and is structured in accordance with the provided UML diagram.  The data is then sent to the proper API endpoint.  However, the backend functionality to actually store the data has yet to be implemented.
 
 ---
 ## Requirements
