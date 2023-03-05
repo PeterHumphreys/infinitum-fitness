@@ -62,8 +62,6 @@ export function DataProvider({children})
 
   //Get routine data
   const {data : routineData, loading : routineLoading, error : routineError } = useFetch("routines");
-
-
   
   //Set User
   useEffect(() =>

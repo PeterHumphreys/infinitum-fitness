@@ -1,0 +1,21 @@
+.custom-chart-wrapper 
+{
+  .custom-chart-options 
+  {
+    display: flex;
+    button {
+      
+    }
+  }
+  .chart-container 
+  {
+    //TODO: Remove fixed size
+    height:300px;
+    display: grid;
+    background-color: rgba(white, .7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+}
+

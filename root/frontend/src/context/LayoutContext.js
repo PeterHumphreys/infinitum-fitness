@@ -5,7 +5,10 @@ const LayoutContext = createContext({});
 export function LayoutProvider({children})
 {
   //Whether or not the navigation menu is opened
-  const [isNavExpanded, setIsNavExpanded] = useState((false));
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
+
+  //Whether or not the sidebar is opened
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   //Expands/closes the navbar
   function toggleNav()
@@ -13,9 +16,18 @@ export function LayoutProvider({children})
     setIsNavExpanded(!isNavExpanded)
   }
 
+  //Expands/closes the sidebar
+  function toggleSidebar()
+  {
+    setIsSidebarCollapsed(!isSidebarCollapsed)
+  }
+
   return (
     <LayoutContext.Provider value={{
-      toggleNav, isNavExpanded
+      toggleNav, 
+      toggleSidebar, 
+      isNavExpanded,
+      isSidebarCollapsed
     }}>
       {children}
     </LayoutContext.Provider>
