@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from 'react'
 import LayoutContext from '../../context/LayoutContext'
 import ExpandCollapseButton from '../__shared/ExpandCollapseButton.jsx'
-import "../../assets/scss/layout/SideBar.scss"
+import "./SideBar.scss"
 
 function Sidebar() {
   const {isSidebarCollapsed, toggleSidebar} = useContext(LayoutContext)

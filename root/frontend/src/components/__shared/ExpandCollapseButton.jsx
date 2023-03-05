@@ -1,6 +1,6 @@
 import React from 'react'
 import {FaChevronLeft} from 'react-icons/fa';
-import '../../assets/scss/components/Buttons/ExpandCollapseButton.scss'
+import './ExpandCollapseButton.scss'
 
 function ExpandCollapseButton({type, clickHandler}) {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import "./assets/scss/styles.scss";
+import "./styles/index.scss";
 import App from './App';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 //Components
@@ -12,7 +12,6 @@ root.render(
       <Routes>
         <Route path="/*" element={<App/>}/>
       </Routes>
-    
     </BrowserRouter>
   </React.StrictMode>
 );

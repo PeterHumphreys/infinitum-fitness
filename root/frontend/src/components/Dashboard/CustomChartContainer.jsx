@@ -1,6 +1,6 @@
 import {Line} from 'react-chartjs-2'
 import {IoOptionsSharp} from 'react-icons/io5'
-import '../../assets/scss/components/Dashboard/CustomChart.scss'
+import './CustomChart.scss'
 
 // function CustomChart({chartData, chartOptions}) {
 //   return (

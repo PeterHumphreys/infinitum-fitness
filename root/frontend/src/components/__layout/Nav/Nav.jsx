@@ -4,6 +4,7 @@ import {useState} from 'react';
 import {FaChevronLeft} from 'react-icons/fa';
 import {useContext} from 'react';
 import LayoutContext from '../../../context/LayoutContext';
+import './Nav.scss'
 
 function Nav() {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);

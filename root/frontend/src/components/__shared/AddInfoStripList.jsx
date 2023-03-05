@@ -1,5 +1,6 @@
 import AddInfoStrip from './AddInfoStrip';
 import {useState, useRef} from 'react';
+import './InfoStrip.scss'
 
 function AddInfoStripList({exerciseList, highlightedExercise, setHighlightedExercise}) {
   return (

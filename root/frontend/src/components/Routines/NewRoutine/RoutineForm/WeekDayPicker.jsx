@@ -1,5 +1,5 @@
 import WeekDay from './WeekDay';
-import '../../../../../src/assets/scss/components/WeekDayPicker.scss'
+import './WeekDayPicker.scss'
 
 function WeekDayPicker() {
   const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']

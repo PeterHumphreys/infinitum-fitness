@@ -1,4 +1,5 @@
 import {AiOutlineClose} from 'react-icons/ai';
+import './Modal.scss'
 
 function Modal({open, title, handleModalToggle, children}) {
   return (

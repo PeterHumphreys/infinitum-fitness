@@ -1,5 +1,4 @@
 import {FaMinusSquare} from 'react-icons/fa';
-import {FiEdit} from 'react-icons/fi';
 import {useState, useEffect} from 'react';
 import { useContext } from 'react';
 import RoutineFormContext from '../../context/RoutineFormContext';

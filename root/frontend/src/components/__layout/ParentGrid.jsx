@@ -1,7 +1,7 @@
 import React from 'react'
 import LayoutContext from '../../context/LayoutContext'
 import { useContext } from 'react'
-import "../../assets/scss/layout/Grid.scss"
+import "../../styles/grids.scss"
 
 
 function ParentGrid({children}) {

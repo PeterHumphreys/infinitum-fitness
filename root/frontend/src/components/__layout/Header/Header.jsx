@@ -4,6 +4,7 @@ import useScrolled from '../../../hooks/useScroll';
 import {useContext} from 'react';
 import LayoutContext from '../../../context/LayoutContext';
 import DataContext from '../../../context/DataContext';
+import './Header.scss'
 
 function Header() {
 
